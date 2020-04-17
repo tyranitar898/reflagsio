@@ -10,7 +10,7 @@ function CreateWindow(props) {
           type="text"
           placeholder="Enter your name (must have >2 and <20 characters)"
         />
-        <button id="createButton">Create</button>
+        <button>Create</button>
       </div>
     </div>
   );

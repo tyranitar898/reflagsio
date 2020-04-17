@@ -5,8 +5,12 @@ import JoinWindow from "./JoinWindow";
 class StartControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { nextPage: "start" };
+    this.state = { nextPage: "start", name: "", roomcode: "" };
   }
+
+  callbackFunction = (name) => {
+    this.setState({ name: name });
+  };
 
   handleCreateClick = () => {
     this.setState((state) => ({
@@ -39,7 +43,7 @@ class StartControl extends React.Component {
     } else {
       startButtons = <div />;
       if (nextPage === "create") {
-        nextWindow = <CreateWindow />;
+        nextWindow = <CreateWindow pCallBack={this.callbackFunction} />;
       }
       if (nextPage === "join") {
         nextWindow = <JoinWindow />;
