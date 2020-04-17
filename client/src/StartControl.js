@@ -1,52 +1,100 @@
 import React from "react";
 import CreateWindow from "./CreateWindow";
 import JoinWindow from "./JoinWindow";
-
+import GameLobby from "./GameLobby";
 class StartControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { nextPage: "start", name: "", roomcode: "" };
+    this.state = {
+      socket: this.props.socket,
+      nextPage: "start",
+      name: "",
+      game: false,
+    };
+  }
+  //dont technicallhy need this.
+  //render is checking props( correct)
+  //child components shouldnt change based on parent's state.
+  componentWillReceiveProps(props) {
+    if (props.game !== false) {
+      this.setState({ game: props.game, roomcode: props.roomcode });
+    }
   }
 
-  callbackFunction = (name) => {
-    this.setState({ name: name });
+  callbackFunction = (name, roomcode) => {
+    this.setState({ name: name, roomcode: roomcode });
+    this.props.pCallBack(name, roomcode);
   };
 
-  handleCreateClick = () => {
-    this.setState((state) => ({
-      nextPage: "create",
-    }));
+  handleStartGame = (event) => {
+    this.props.pStartGame();
   };
-  handleJoinClick = () => {
+
+  handleMenuButtonClick = (event) => {
+    const targetName = event.target.name;
+    var value;
+    if (targetName === "create") {
+      value = "create";
+    } else if (targetName === "join") {
+      value = "join";
+    } else if (targetName === "back") {
+      value = "start";
+    }
+
     this.setState((state) => ({
-      nextPage: "join",
-    }));
-  };
-  handleBackClick = () => {
-    this.setState((state) => ({
-      nextPage: "start",
+      nextPage: value,
     }));
   };
 
   render() {
     var nextPage = this.state.nextPage;
+    let backButton = (
+      <button name="back" onClick={this.handleMenuButtonClick}>
+        Back
+      </button>
+    );
     let startButtons = (
       <div>
-        <button onClick={this.handleCreateClick}>Create</button>
-        <button onClick={this.handleJoinClick}>Join</button>
+        <button name="create" onClick={this.handleMenuButtonClick}>
+          Create
+        </button>
+        <button name="join" onClick={this.handleMenuButtonClick}>
+          Join
+        </button>
         <button>How To Play</button>
       </div>
     );
     let nextWindow;
-    if (nextPage === "start") {
-      nextWindow = <div />;
-    } else {
-      startButtons = <div />;
-      if (nextPage === "create") {
-        nextWindow = <CreateWindow pCallBack={this.callbackFunction} />;
+    let gameLobby;
+    if (this.props.game) {
+      //has a game
+      startButtons = <div></div>;
+      backButton = <div></div>;
+      if (this.props.isHost) {
+        backButton = <button onClick={this.handleStartGame}>Start Game</button>;
       }
-      if (nextPage === "join") {
-        nextWindow = <JoinWindow />;
+
+      gameLobby = <GameLobby game={this.props.game} />;
+    } else {
+      //no game
+      gameLobby = <div></div>;
+      if (nextPage === "start") {
+        nextWindow = <div />;
+      } else {
+        startButtons = <div />;
+        if (nextPage === "create") {
+          nextWindow = (
+            <div>
+              <CreateWindow
+                socket={this.props.socket}
+                pCallBack={this.callbackFunction}
+              />
+            </div>
+          );
+        }
+        if (nextPage === "join") {
+          nextWindow = <JoinWindow pCallBack={this.callbackFunction} />;
+        }
       }
     }
 
@@ -54,7 +102,8 @@ class StartControl extends React.Component {
       <div>
         {startButtons}
         {nextWindow}
-        <button onClick={this.handleBackClick}>Back</button>
+        {gameLobby}
+        {backButton}
       </div>
     );
   }
