@@ -3,7 +3,8 @@ import "./App.css";
 import StartControl from "./StartControl";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8000");
+//const socket = io("http://localhost:8000");
+const socket = io("https://redflagsio.herokuapp.com/");
 //Socket responses
 
 class App extends React.Component {
