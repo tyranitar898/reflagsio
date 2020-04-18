@@ -1,5 +1,4 @@
 import React from "react";
-import "./create.css";
 
 class CreateWindow extends React.Component {
   constructor(props) {

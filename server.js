@@ -84,7 +84,7 @@ io.on("connection", function (socket) {
 
 function findGame(gameCode) {
   for (i = 0; i < games.length; i++) {
-    if (games[i].getCode() == gameCode) {
+    if (games[i].getCode() === gameCode) {
       return games[i];
     }
   }

@@ -4,8 +4,8 @@ import StartControl from "./StartControl";
 import GameControl from "./GameControl";
 import io from "socket.io-client";
 
-//const socket = io("http://localhost:8000");
-const socket = io("https://redflagsio.herokuapp.com/");
+const socket = io("http://localhost:8000");
+//const socket = io("https://redflagsio.herokuapp.com/");
 //Socket responses
 
 class App extends React.Component {
@@ -31,10 +31,8 @@ class App extends React.Component {
       this.setState({ game: game, roomcode: game.code });
     });
     this.state.socket.on("startGame", (game, hands) => {
-      console.log(this.state.name);
       var hand = findHand(this.state.name, hands);
       console.log(game);
-
       this.setState({ game: game, roomcode: game.code, hand: hand });
     });
   }
@@ -63,7 +61,11 @@ class App extends React.Component {
     let MenuOrStart;
     if (this.state.game.isActive) {
       MenuOrStart = (
-        <GameControl game={this.state.game} hand={this.state.hand} />
+        <GameControl
+          socket={this.state.socket}
+          game={this.state.game}
+          hand={this.state.hand}
+        />
       );
     } else {
       MenuOrStart = (

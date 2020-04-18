@@ -1,8 +1,22 @@
 import React from "react";
 import { render } from "react-dom";
+
 function ListItem(props) {
   // Correct! There is no need to specify the key here:
   return <li>{props.value}</li>;
+}
+
+function CardButton(props) {
+  const sendCardButton = () => {
+    props.socket.emit("sendCardButton", props.value);
+    console.log(props.value);
+  };
+  // Correct! There is no need to specify the key here:
+  return (
+    <button onClick={sendCardButton} id="cards">
+      {props.value}
+    </button>
+  );
 }
 
 function GameControl(props) {
@@ -17,14 +31,14 @@ function GameControl(props) {
   console.log(perks);
   const yourPerks = perks.map((card) => (
     // Correct! Key should be specified inside the array.
-    <ListItem key={card} value={card} />
+    <CardButton socket={props.socket} key={card} value={card} />
   ));
 
   var rfs = props.hand.redflags;
   console.log(rfs);
   const yourRfs = rfs.map((card) => (
     // Correct! Key should be specified inside the array.
-    <ListItem key={card} value={card} />
+    <CardButton socket={props.socket} key={card} value={card} />
   ));
 
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import "./create.css";
 
 class JoinWindow extends React.Component {
   constructor(props) {
