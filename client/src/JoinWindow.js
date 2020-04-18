@@ -1,6 +1,5 @@
 import React from "react";
 import "./create.css";
-import io from "socket.io-client";
 
 class JoinWindow extends React.Component {
   constructor(props) {

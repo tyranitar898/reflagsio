@@ -8,6 +8,7 @@ const Player = require("./app/player");
 
 //testing game room.
 var tester = new Player("tester", true, 1);
+
 var testGame = new Game("aaaa", tester);
 //RedFlags server vars
 var games = [testGame];
@@ -69,12 +70,15 @@ io.on("connection", function (socket) {
     }
   });
 
-  socket.on("startGame", (gameCode) => {
+  socket.on("startGame", (gameCode, name) => {
     var game = findGame(gameCode);
     game.isActive = true;
-    io.to(game.getCode()).emit("startGame", game);
+
     console.log(gameCode + " has started");
-    console.log(game);
+    player = game.getPlayer(name);
+    var hands = game.getHands(player);
+    console.log("server " + hands.length);
+    io.to(game.getCode()).emit("startGame", game, hands);
   });
 });
 
