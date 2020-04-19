@@ -45,6 +45,7 @@ class Game {
       "Your parents love them",
       "Love cats",
       "The hot barista",
+      "Is Tik Tok famous",
     ];
     this.redFlags = [
       "Has the face of a pug",
@@ -59,6 +60,11 @@ class Game {
       "Describes all food as yummy yummy",
       "Calls their pets their children",
       "Regularly hosts Tea Parties for dolls",
+      "Can't do basic addition",
+      "Walks around the house naked",
+      "Never cooks",
+      "Most toxic gamer",
+      "Ubers everywhere",
     ];
     this.turn = 0;
     this.curSingle = host.name;
