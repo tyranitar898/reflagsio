@@ -7,14 +7,15 @@ function ListItem(props) {
 }
 
 function CardButton(props) {
+  var cardName = props.value[0];
   const sendCardButton = () => {
     props.socket.emit("sendCardButton", props.value);
-    console.log(props.value);
+    console.log(cardName);
   };
   // Correct! There is no need to specify the key here:
   return (
     <button onClick={sendCardButton} id="cards">
-      {props.value}
+      {cardName}
     </button>
   );
 }
@@ -28,21 +29,22 @@ function GameControl(props) {
   ));
 
   var perks = props.hand.perks;
-  console.log(perks);
+
   const yourPerks = perks.map((card) => (
     // Correct! Key should be specified inside the array.
     <CardButton socket={props.socket} key={card} value={card} />
   ));
 
   var rfs = props.hand.redflags;
-  console.log(rfs);
+
   const yourRfs = rfs.map((card) => (
     // Correct! Key should be specified inside the array.
     <CardButton socket={props.socket} key={card} value={card} />
   ));
-
+  console.log(props.game.code);
   return (
     <div>
+      <h1>Red Flag game code: {props.game.code}</h1>
       <h1>Players in this Game</h1>
       {playerList}
       <h1>Your Perks</h1>

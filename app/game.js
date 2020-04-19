@@ -67,8 +67,9 @@ class Game {
   addPlayer(player) {
     if (!this.isActive) {
       this.players.push(player);
+      return true;
     } else {
-      //handle already started game
+      return false;
     }
   }
 
@@ -86,7 +87,7 @@ class Game {
 
   getHands(name) {
     var hand = [];
-    console.log(this.players.length);
+
     for (var i = 0; i < this.players.length; i++) {
       var perksARR = [];
       var redflagsARR = [];

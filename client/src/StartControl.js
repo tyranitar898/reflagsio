@@ -6,7 +6,7 @@ class StartControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: this.props.socket,
+      socket: props.socket,
       nextPage: "start",
       name: "",
       game: false,

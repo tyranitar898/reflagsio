@@ -1,7 +1,6 @@
 //module imports
 const express = require("express");
 const path = require("path");
-const socket = require("socket.io");
 
 const Game = require("./app/game");
 const Player = require("./app/player");
@@ -15,10 +14,14 @@ var games = [testGame];
 
 //App setup
 const app = express();
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
+
+var server = require("http").Server(app);
+var io = require("socket.io")(server, {
+  pingInterval: 10000,
+  pingTimeout: 30000,
+});
+
+const port = process.env.PORT || 8000;
 
 // Serve any static files
 app.use(express.static(path.join(__dirname, "client/build")));
@@ -27,19 +30,14 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-//server lisetning
-var server = app.listen(port, function () {
-  console.log("listening to requests on port 8000...");
-});
-
-var io = socket(server);
+//TODO : handle disconnection.
 
 io.on("connection", function (socket) {
   console.log("socket connection made " + socket.id);
 
   //creating a game
   socket.on("createGame", (data) => {
-    host = new Player(data.playerName, true);
+    host = new Player(data.playerName, true, socket.id);
     game = new Game(generateCode(), host);
     games.push(game);
     console.log(
@@ -52,18 +50,24 @@ io.on("connection", function (socket) {
   //Join a game
   socket.on("joinGame", (data) => {
     //create the player and game. add player to game
-    player = new Player(data.playerName, false);
+
+    //for some odd reason cant pass the socket itself????
+    player = new Player(data.playerName, false, socket.id);
     gameCode = data.roomCode;
 
     var game = findGame(gameCode);
 
     if (game) {
-      game.addPlayer(player);
-      console.log(
-        "(Server): " + player.name + " joined game " + game.getCode()
-      );
-      socket.join(game.getCode());
-      io.to(game.getCode()).emit("joinGame", game);
+      if (game.addPlayer(player)) {
+        console.log(
+          "(Server): " + player.name + " joined game " + game.getCode()
+        );
+        socket.join(game.getCode());
+        io.to(game.getCode()).emit("joinGame", game);
+      } else {
+        //trying to join existsing game(which you cant)
+        //should tell them
+      }
     } else {
       console.log("(Server): Couldnt find game");
       socket.emit("joinError", {});
@@ -77,8 +81,12 @@ io.on("connection", function (socket) {
     console.log(gameCode + " has started");
     player = game.getPlayer(name);
     var hands = game.getHands(player);
-    console.log("server " + hands.length);
+
     io.to(game.getCode()).emit("startGame", game, hands);
+  });
+
+  socket.on("disconnect", (data) => {
+    console.log(socket.id + " disconnected");
   });
 });
 
@@ -101,3 +109,5 @@ function generateCode() {
   } while (games.includes(code));
   return code;
 }
+
+server.listen(port, () => console.log(`Listening on port ${port}`));
