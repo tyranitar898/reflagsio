@@ -46,6 +46,17 @@ class Game {
       "Love cats",
       "The hot barista",
       "Is Tik Tok famous",
+      "Owns a pony farm",
+      "Respects your boundaries",
+      "Has the job you always wanted",
+      "Can shapeshift into any animal",
+      "Only takes one trip to bring groceries",
+      "Makes sure you're always oiled up",
+      "Professional fighter",
+      "Owns your favorite museum",
+      "You will be exept from paying taxes while dating them",
+      "Treats your parents well",
+      "Celebrity",
     ];
     this.redFlags = [
       "Has the face of a pug",
@@ -65,9 +76,15 @@ class Game {
       "Never cooks",
       "Most toxic gamer",
       "Ubers everywhere",
+      "Will eat everything even if its not food",
+      "Shits while cumming",
+      "Their pubes have dreadlocks",
+      "Still in jail",
     ];
     this.turn = 0;
     this.curSingle = host.name;
+    //at beinging of every turn this.dates shoudl be empty
+    this.dates = [];
   }
 
   addPlayer(player) {
@@ -81,6 +98,12 @@ class Game {
 
   getCode() {
     return this.code;
+  }
+
+  addDate(perk1) {
+    //shoudl take 2 perks
+    //should store {perk1, perk2, rf}
+    this.dates.push({ p1: perk1 });
   }
 
   getPlayer(playerName) {

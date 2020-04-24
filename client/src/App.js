@@ -4,8 +4,8 @@ import StartControl from "./StartControl";
 import GameControl from "./GameControl";
 import io from "socket.io-client";
 
-// const socket = io("http://localhost:8000");
-const socket = io("https://redflagsio.herokuapp.com/");
+const socket = io("http://localhost:8000");
+//const socket = io("https://redflagsio.herokuapp.com/");
 //Socket responses
 
 class App extends React.Component {
@@ -34,6 +34,10 @@ class App extends React.Component {
       var hand = findHand(this.state.name, hands);
       console.log(game);
       this.setState({ game: game, roomcode: game.code, hand: hand });
+    });
+    this.state.socket.on("sendDates", (game) => {
+      console.log(game);
+      this.setState({ game: game });
     });
   }
 
@@ -89,6 +93,7 @@ function findHand(name, hands) {
       return hands[i];
     }
   }
+  //coundlt find hand for this player
   return [];
 }
 

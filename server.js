@@ -85,6 +85,13 @@ io.on("connection", function (socket) {
     io.to(game.getCode()).emit("startGame", game, hands);
   });
 
+  socket.on("sendCardButton", (gameCode, card) => {
+    //card is str for now
+    var game = findGame(gameCode);
+    game.addDate(card);
+    io.to(game.getCode()).emit("sendDates", game);
+  });
+
   socket.on("disconnect", (data) => {
     console.log(socket.id + " disconnected");
   });
