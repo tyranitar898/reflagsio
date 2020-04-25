@@ -20,57 +20,72 @@ function CardButton(props) {
   };
   // Correct! There is no need to specify the key here:
   return (
-    <button onClick={sendCardButton} id="cards">
+    <button onClick={props.updateSelectedCards(cardName)} id="cards">
       {cardName}
     </button>
   );
 }
 
-function GameControl(props) {
-  var game = props.game;
+class GameControl extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { selectedCards: "" };
+  }
 
-  console.log("Game control updated");
-  console.log(game);
+  //TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
+  updateSelectedCards = (cardStr) => {
+    //this.setState({ selectedCards: cardStr });
+    console.log(cardStr);
+  };
 
-  const players = game.players;
-  const playerList = players.map((player) => (
-    // Correct! Key should be specified inside the array.
-    <PlayerItem key={player.name} player={player} />
-  ));
-  console.log(props);
-  var perks = props.hand.perks;
+  render() {
+    var game = this.props.game;
 
-  const yourPerks = perks.map((card) => (
-    // Correct! Key should be specified inside the array.
-    <CardButton
-      socket={props.socket}
-      gamecode={game.code}
-      key={card}
-      value={card}
-    />
-  ));
+    console.log("Game control updated");
+    console.log(game);
 
-  var rfs = props.hand.redflags;
+    const players = game.players;
+    const playerList = players.map((player) => (
+      // Correct! Key should be specified inside the array.
+      <PlayerItem key={player.name} player={player} />
+    ));
 
-  const yourRfs = rfs.map((card) => (
-    // Correct! Key should be specified inside the array.
-    <CardButton
-      socket={props.socket}
-      gamecode={game.code}
-      key={card}
-      value={card}
-    />
-  ));
-  return (
-    <div>
-      <h1>Red Flag game code: {props.game.code}</h1>
-      <h1>Players in this Game</h1>
-      {playerList}
-      <h1>Your Perks</h1>
-      {yourPerks}
-      <h1>Your Red Flags</h1>
-      {yourRfs}
-    </div>
-  );
+    var perks = this.props.hand.perks;
+
+    const yourPerks = perks.map((card) => (
+      // Correct! Key should be specified inside the array.
+      <CardButton
+        socket={this.props.socket}
+        gamecode={game.code}
+        key={card}
+        value={card}
+        updateSelectedCards={this.updateSelectedCards}
+      />
+    ));
+
+    var rfs = this.props.hand.redflags;
+
+    const yourRfs = rfs.map((card) => (
+      // Correct! Key should be specified inside the array.
+      <CardButton
+        socket={this.props.socket}
+        gamecode={game.code}
+        key={card}
+        value={card}
+        updateSelectedCards={this.updateSelectedCards}
+      />
+    ));
+    return (
+      <div>
+        <h1>Red Flag game code: {this.props.game.code}</h1>
+        <h1>Players in this Game</h1>
+        {playerList}
+        <h1>Your Perks</h1>
+        {yourPerks}
+        <h1>Your Red Flags</h1>
+        {yourRfs}
+      </div>
+    );
+  }
 }
 export default GameControl;
