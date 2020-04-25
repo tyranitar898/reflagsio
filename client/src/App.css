@@ -105,3 +105,10 @@ button {
 button#cards:hover {
   background: red;
 }
+
+li#playerActive {
+  color: green;
+}
+li#playerInactive {
+  color: red;
+}

@@ -27,11 +27,15 @@ class App extends React.Component {
       this.setState({ game: game, roomcode: game.code, isHost: true });
     });
     this.state.socket.on("joinGame", (game) => {
-      console.log(game);
-      this.setState({ game: game, roomcode: game.code });
+      console.log(this.state.name);
+      var hand = findHand(this.state.name, game);
+      //console.log("update game from joinGame");
+      //console.log(game);
+      this.setState({ game: game, roomcode: game.code, hand: hand });
     });
-    this.state.socket.on("startGame", (game, hands) => {
-      var hand = findHand(this.state.name, hands);
+    this.state.socket.on("startGame", (game) => {
+      console.log(this.state.name);
+      var hand = findHand(this.state.name, game);
       console.log(game);
       this.setState({ game: game, roomcode: game.code, hand: hand });
     });
@@ -61,6 +65,11 @@ class App extends React.Component {
     }
   };
 
+  disconnect() {
+    socket.close();
+    //handle disonnection some how change the game's player.active state
+  }
+
   render() {
     let MenuOrStart;
     if (this.state.game.isActive) {
@@ -83,14 +92,21 @@ class App extends React.Component {
         />
       );
     }
-    return <div>{MenuOrStart}</div>;
+    return (
+      <div>
+        {MenuOrStart}
+        <button name="disconnect" onClick={this.disconnect}>
+          X
+        </button>
+      </div>
+    );
   }
 }
 
-function findHand(name, hands) {
-  for (var i = 0; i < hands.length; i++) {
-    if (name === hands[i].name) {
-      return hands[i];
+function findHand(name, game) {
+  for (var i = 0; i < game.hands.length; i++) {
+    if (name === game.hands[i].name) {
+      return game.hands[i];
     }
   }
   //coundlt find hand for this player

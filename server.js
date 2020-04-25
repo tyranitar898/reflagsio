@@ -33,10 +33,14 @@ app.get("*", function (req, res) {
 //TODO : handle disconnection.
 
 io.on("connection", function (socket) {
-  console.log("socket connection made " + socket.id);
+  //pull game from each subsection to the top here. every time a connect is made ithandles a diff game
 
+  console.log("socket connection made " + socket.id);
+  var game;
+  var name;
   //creating a game
   socket.on("createGame", (data) => {
+    name = data.playerName;
     host = new Player(data.playerName, true, socket.id);
     game = new Game(generateCode(), host);
     games.push(game);
@@ -52,16 +56,19 @@ io.on("connection", function (socket) {
     //create the player and game. add player to game
 
     //for some odd reason cant pass the socket itself????
-    player = new Player(data.playerName, false, socket.id);
+    name = data.playerName;
+    player = new Player(name, false, socket.id);
     gameCode = data.roomCode;
 
-    var game = findGame(gameCode);
+    game = findGame(gameCode);
 
     if (game) {
-      if (game.addPlayer(player)) {
+      if (game.joinPlayer(player)) {
         console.log(
           "(Server): " + player.name + " joined game " + game.getCode()
         );
+        console.log("(Server): " + player.name + " joined a game");
+
         socket.join(game.getCode());
         io.to(game.getCode()).emit("joinGame", game);
       } else {
@@ -75,25 +82,31 @@ io.on("connection", function (socket) {
   });
 
   socket.on("startGame", (gameCode, name) => {
-    var game = findGame(gameCode);
+    game = findGame(gameCode);
     game.isActive = true;
 
-    console.log(gameCode + " has started");
+    console.log("(Server): " + gameCode + " has started");
     player = game.getPlayer(name);
-    var hands = game.getHands(player);
+    game.updateHands();
 
-    io.to(game.getCode()).emit("startGame", game, hands);
+    io.to(game.getCode()).emit("startGame", game);
   });
 
   socket.on("sendCardButton", (gameCode, card) => {
     //card is str for now
-    var game = findGame(gameCode);
+    game = findGame(gameCode);
     game.addDate(card);
     io.to(game.getCode()).emit("sendDates", game);
   });
 
-  socket.on("disconnect", (data) => {
-    console.log(socket.id + " disconnected");
+  socket.on("disconnect", (reason) => {
+    if (game !== undefined) {
+      game.disconnectPlayer(name);
+      socket.join(game.getCode());
+      io.to(game.getCode()).emit("joinGame", game);
+    }
+
+    console.log("(Server): " + socket.id + " disconnected w/ reason" + reason);
   });
 });
 

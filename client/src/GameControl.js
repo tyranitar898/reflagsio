@@ -1,9 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
 
-function ListItem(props) {
+function PlayerItem(props) {
   // Correct! There is no need to specify the key here:
-  return <li>{props.value}</li>;
+  console.log("player item updateed");
+  console.log(props.player);
+  let p = props.player;
+  let c = "playerActive";
+  if (!p.active) {
+    c = "playerInactive";
+  }
+  return <li id={c}>{p.name}</li>;
 }
 
 function CardButton(props) {
@@ -21,12 +28,16 @@ function CardButton(props) {
 
 function GameControl(props) {
   var game = props.game;
+
+  console.log("Game control updated");
+  console.log(game);
+
   const players = game.players;
   const playerList = players.map((player) => (
     // Correct! Key should be specified inside the array.
-    <ListItem key={player.name} value={player.name} />
+    <PlayerItem key={player.name} player={player} />
   ));
-
+  console.log(props);
   var perks = props.hand.perks;
 
   const yourPerks = perks.map((card) => (
@@ -50,7 +61,6 @@ function GameControl(props) {
       value={card}
     />
   ));
-  console.log(props.game.code);
   return (
     <div>
       <h1>Red Flag game code: {props.game.code}</h1>

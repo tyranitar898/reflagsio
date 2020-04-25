@@ -4,16 +4,11 @@ class Player {
     this.name = name;
     this.isHost = isHost;
     this.socketId = socketId;
-  }
-
-  activate(socket) {
     this.active = true;
-    this.socket = socket;
   }
 
-  deactivate() {
-    this.active = false;
-    this.socket = undefined;
+  getName() {
+    return this.name;
   }
 }
 

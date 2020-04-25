@@ -85,15 +85,29 @@ class Game {
     this.curSingle = host.name;
     //at beinging of every turn this.dates shoudl be empty
     this.dates = [];
+    this.hands = [];
   }
 
-  addPlayer(player) {
+  joinPlayer(player) {
     if (!this.isActive) {
+      //inactive game
       this.players.push(player);
       return true;
     } else {
+      //active game
+      if (this.nameTaken(player)) {
+        //rejoining
+        var p = this.getPlayer(player.name);
+        p.active = true;
+        return true;
+      }
       return false;
     }
+  }
+
+  disconnectPlayer(playerName) {
+    var p = this.getPlayer(playerName);
+    p.active = false;
   }
 
   getCode() {
@@ -106,17 +120,26 @@ class Game {
     this.dates.push({ p1: perk1 });
   }
 
+  nameTaken(player) {
+    for (var i = 0; i < this.players.length; i++) {
+      if (this.players[i].name === player.getName()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   getPlayer(playerName) {
     for (var i = 0; i < this.players.length; i++) {
       if (this.players[i].name === playerName) {
-        return this.players[i].name;
+        return this.players[i];
       }
     }
+    return false;
   }
 
-  getHands(name) {
+  updateHands() {
     var hand = [];
-
     for (var i = 0; i < this.players.length; i++) {
       var perksARR = [];
       var redflagsARR = [];
@@ -136,8 +159,7 @@ class Game {
       };
       hand.push(data);
     }
-
-    return hand;
+    this.hands = hand;
   }
 }
 
