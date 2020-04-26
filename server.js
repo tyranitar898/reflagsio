@@ -7,7 +7,6 @@ const Player = require("./app/player");
 
 //testing game room.
 var tester = new Player("tester", true, 1);
-
 var testGame = new Game("aaaa", tester);
 //RedFlags server vars
 var games = [testGame];
