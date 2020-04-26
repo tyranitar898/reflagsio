@@ -11,12 +11,13 @@ function PlayerItem(props) {
   }
   return <li id={c}>{p.name}</li>;
 }
-
+/* 
+const sendCardButton = () => {
+  props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
+}; */
 function CardButton(props) {
   var cardName = props.value[0];
-  const sendCardButton = () => {
-    props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
-  };
+
   // Correct! There is no need to specify the key here:
   return (
     <button onClick={() => props.updateSelectedCards(cardName)} id="cards">
@@ -24,15 +25,11 @@ function CardButton(props) {
     </button>
   );
 }
+//TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
 
 function GameControl(props) {
-  //TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
   const [card1, setCard1] = useState("");
-
   var game = props.game;
-
-  console.log("Game control updated");
-
   const players = game.players;
   const playerList = players.map((player) => (
     // Correct! Key should be specified inside the array.

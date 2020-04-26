@@ -7,14 +7,13 @@ const Player = require("./app/player");
 
 //testing game room.
 var tester = new Player("tester", true, 1);
-
 var testGame = new Game("aaaa", tester);
-//RedFlags server vars
 var games = [testGame];
 
 //App setup
 const app = express();
 
+//RedFlags server vars
 var server = require("http").Server(app);
 var io = require("socket.io")(server, {
   pingInterval: 10000,
