@@ -3,8 +3,7 @@ import { render } from "react-dom";
 
 function PlayerItem(props) {
   // Correct! There is no need to specify the key here:
-  console.log("player item updateed");
-  console.log(props.player);
+
   let p = props.player;
   let c = "playerActive";
   if (!p.active) {
@@ -16,11 +15,11 @@ function PlayerItem(props) {
 function CardButton(props) {
   var cardName = props.value[0];
   const sendCardButton = () => {
-    console.log("hi");
+    props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
   };
   // Correct! There is no need to specify the key here:
   return (
-    <button onClick={sendCardButton(cardName)} id="cards">
+    <button onClick={() => props.updateSelectedCards(cardName)} id="cards">
       {cardName}
     </button>
   );
@@ -28,10 +27,7 @@ function CardButton(props) {
 
 function GameControl(props) {
   //TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
-  const updateSelectedCards = (cardStr) => {
-    //this.setState({ selectedCards: cardStr });
-    console.log(cardStr);
-  };
+  const [card1, setCard1] = useState("");
 
   var game = props.game;
 
@@ -52,7 +48,7 @@ function GameControl(props) {
       gamecode={game.code}
       key={card}
       value={card}
-      updateSelectedCards={updateSelectedCards}
+      updateSelectedCards={setCard1}
     />
   ));
 
@@ -65,7 +61,7 @@ function GameControl(props) {
       gamecode={game.code}
       key={card}
       value={card}
-      updateSelectedCards={updateSelectedCards}
+      updateSelectedCards={setCard1}
     />
   ));
   return (
