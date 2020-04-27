@@ -10,6 +10,14 @@ class Player {
   getName() {
     return this.name;
   }
+
+  activate() {
+    this.active = true;
+  }
+
+  deactivate() {
+    this.active = false;
+  }
 }
 
 module.exports = Player;

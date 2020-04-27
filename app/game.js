@@ -97,8 +97,8 @@ class Game {
       //active game
       if (this.nameTaken(player)) {
         //rejoining
-        var p = this.getPlayer(player.name);
-        p.active = true;
+        let p = this.getPlayer(player.name);
+        p.activate();
         return true;
       }
       return false;
@@ -107,7 +107,7 @@ class Game {
 
   disconnectPlayer(playerName) {
     var p = this.getPlayer(playerName);
-    p.active = false;
+    p.deactivate();
   }
 
   getCode() {
