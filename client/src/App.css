@@ -95,11 +95,20 @@ input {
 }
 
 button {
-  background: blue;
-  color: #fff;
+  background: white;
+  color: black;
   font-size: 18px;
   width: 20%;
   height: 30%;
+}
+
+button#cards {
+  vertical-align: top;
+  background: white;
+  width: 20%;
+  height: 150px;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 button#cards:hover {

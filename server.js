@@ -29,8 +29,6 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-//TODO : handle disconnection.
-
 io.on("connection", function (socket) {
   //pull game from each subsection to the top here. every time a connect is made ithandles a diff game
 
@@ -91,11 +89,12 @@ io.on("connection", function (socket) {
     io.to(game.getCode()).emit("startGame", game);
   });
 
-  socket.on("sendCardButton", (gameCode, card) => {
-    //card is str for now
+  socket.on("sendCards", (gameCode, cards) => {
     game = findGame(gameCode);
-    game.addDate(card);
-    io.to(game.getCode()).emit("sendDates", game);
+    //game.addDate(card);
+
+    console.log(cards);
+    io.to(game.getCode()).emit("sendDates", cards);
   });
 
   socket.on("disconnect", (reason) => {

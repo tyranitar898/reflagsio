@@ -15,9 +15,7 @@ function PlayerItem(props) {
 function CardButton(props) {
   var cardName = props.value[0];
   //no need for below
-  const sendCardButton = () => {
-    props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
-  };
+
   // Correct! There is no need to specify the key here:
   return (
     <button onClick={() => props.updateSelectedCards(cardName)} id="cards">
@@ -28,10 +26,24 @@ function CardButton(props) {
 
 function GameControl(props) {
   //TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
-  const [card1, setCard1] = useState("");
+  const [selectedCards, setCards] = useState([]);
+
+  const sendCardsButton = () => {
+    props.socket.emit("sendCards", props.game.code, selectedCards);
+  };
+
+  const addItem = (card) => {
+    var temp = selectedCards;
+    temp.push(card);
+    if (selectedCards.length > 2) {
+      temp.shift();
+    }
+    setCards([...temp]);
+  };
 
   var game = props.game;
-
+  var perks = props.hand.perks;
+  var rfs = props.hand.redflags;
   console.log("Game control updated");
 
   const players = game.players;
@@ -40,8 +52,6 @@ function GameControl(props) {
     <PlayerItem key={player.name} player={player} />
   ));
 
-  var perks = props.hand.perks;
-
   const yourPerks = perks.map((card) => (
     // Correct! Key should be specified inside the array.
     <CardButton
@@ -49,11 +59,9 @@ function GameControl(props) {
       gamecode={game.code}
       key={card}
       value={card}
-      updateSelectedCards={setCard1}
+      updateSelectedCards={addItem}
     />
   ));
-
-  var rfs = props.hand.redflags;
 
   const yourRfs = rfs.map((card) => (
     // Correct! Key should be specified inside the array.
@@ -62,9 +70,15 @@ function GameControl(props) {
       gamecode={game.code}
       key={card}
       value={card}
-      updateSelectedCards={setCard1}
+      updateSelectedCards={addItem}
     />
   ));
+
+  const matchCards = selectedCards.map((card, index) => (
+    // Correct! Key should be specified inside the array.
+    <li key={index}>{card}</li>
+  ));
+
   return (
     <div>
       <h1>Red Flag game code: {props.game.code}</h1>
@@ -74,6 +88,9 @@ function GameControl(props) {
       {yourPerks}
       <h1>Your Red Flags</h1>
       {yourRfs}
+      <h1>Your ideal match for {props.game.curSingle}</h1>
+      {matchCards}
+      <button onClick={sendCardsButton}>Submit match</button>
     </div>
   );
 }
