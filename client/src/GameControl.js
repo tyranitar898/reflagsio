@@ -18,6 +18,11 @@ const sendCardButton = () => {
 function CardButton(props) {
   var cardName = props.value[0];
 
+  //no need for below
+  const sendCardButton = () => {
+    props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
+  };
+
   // Correct! There is no need to specify the key here:
   return (
     <button onClick={() => props.updateSelectedCards(cardName)} id="cards">
