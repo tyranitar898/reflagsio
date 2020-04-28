@@ -14,7 +14,10 @@ function PlayerItem(props) {
   }
   return <li id={c}>{p.name + " : " + pts}</li>;
 }
-
+/* 
+const sendCardButton = () => {
+  props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
+}; */
 function CardButton(props) {
   var cardName = props.value;
 
@@ -25,6 +28,7 @@ function CardButton(props) {
     </button>
   );
 }
+//TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
 
 function GameControl(props) {
   const [selectedCards, setCards] = useState([]);

@@ -147,7 +147,7 @@ class Game {
 
   disconnectPlayer(playerName) {
     var p = this.getPlayer(playerName);
-    p.active = false;
+    p.deactivate();
   }
 
   getCode() {
