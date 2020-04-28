@@ -23,25 +23,21 @@ class App extends React.Component {
 
   componentDidMount() {
     this.state.socket.on("createGame", (game) => {
-      console.log(game);
+      //console.log(game);
       this.setState({ game: game, roomcode: game.code, isHost: true });
     });
     this.state.socket.on("joinGame", (game) => {
-      console.log(this.state.name);
+      //console.log(this.state.name);
       var hand = findHand(this.state.name, game);
       //console.log("update game from joinGame");
       //console.log(game);
       this.setState({ game: game, roomcode: game.code, hand: hand });
     });
     this.state.socket.on("startGame", (game) => {
-      console.log(this.state.name);
+      //console.log(this.state.name);
       var hand = findHand(this.state.name, game);
-      console.log(game);
+      //console.log(game);
       this.setState({ game: game, roomcode: game.code, hand: hand });
-    });
-    this.state.socket.on("sendDates", (cards) => {
-      console.log(" ccc");
-      console.log(cards);
     });
   }
 

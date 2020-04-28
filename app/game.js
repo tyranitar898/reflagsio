@@ -81,24 +81,31 @@ class Game {
       "Their pubes have dreadlocks",
       "Still in jail",
     ];
-    this.turn = 0;
+    this.turn = 1;
     this.curSingle = host.name;
+
     //at beinging of every turn this.dates shoudl be empty
     this.dates = [];
     this.hands = [];
+    this.points = { [host.name]: 0 };
   }
 
   joinPlayer(player) {
     if (!this.isActive) {
-      //inactive game
+      //inactive game\
+
       this.players.push(player);
+      //bad because its using
+      this.points[player.name] = 0;
       return true;
     } else {
       //active game
       if (this.nameTaken(player)) {
         //rejoining
         var p = this.getPlayer(player.name);
+        //cahnge to a meothd()
         p.active = true;
+
         return true;
       }
       return false;
@@ -114,10 +121,25 @@ class Game {
     return this.code;
   }
 
-  addDate(perk1) {
-    //shoudl take 2 perks
-    //should store {perk1, perk2, rf}
-    this.dates.push({ p1: perk1 });
+  //updates turn. and changes new cur single and update game stats
+  endRound(winnerName) {
+    this.turn += 1;
+    this.curSingle = winnerName;
+    //bad cuz it assumes winner anme exists
+    this.points[winnerName] += 1;
+    this.hands = [];
+    this.dates = [];
+  }
+
+  addDate(fromPlayer, perks) {
+    for (var i = 0; i < this.dates.length; i++) {
+      if (this.dates[i].from === fromPlayer) {
+        //already submitted a match
+        console.log("already submitted a match");
+        return;
+      }
+    }
+    this.dates.push({ from: fromPlayer, perks: perks });
   }
 
   nameTaken(player) {
@@ -146,11 +168,13 @@ class Game {
 
       for (var j = 0; j < PERKPERHAND; j++) {
         var randPos = Math.floor(Math.random(0, this.perks.length));
-        perksARR.push(this.perks.splice(randPos, 1));
+        //need [0] cuz splice returns an array of the one element popped
+        //also shoudl tihnk abotu handling the empty array return case
+        perksARR.push(this.perks.splice(randPos, 1)[0]);
       }
       for (var k = 0; k < RFPERHAND; k++) {
         var randPos = Math.floor(Math.random(0, this.redFlags.length));
-        redflagsARR.push(this.redFlags.splice(randPos, 1));
+        redflagsARR.push(this.redFlags.splice(randPos, 1)[0]);
       }
       var data = {
         name: this.players[i].name,
@@ -160,6 +184,7 @@ class Game {
       hand.push(data);
     }
     this.hands = hand;
+    //console.log(this.hands);
   }
 }
 

@@ -89,12 +89,20 @@ io.on("connection", function (socket) {
     io.to(game.getCode()).emit("startGame", game);
   });
 
-  socket.on("sendCards", (gameCode, cards) => {
+  socket.on("sendMatch", (gameCode, playerName, cards) => {
     game = findGame(gameCode);
-    //game.addDate(card);
+    game.addDate(playerName, cards);
 
-    console.log(cards);
-    io.to(game.getCode()).emit("sendDates", cards);
+    console.log(game);
+    io.to(game.getCode()).emit("joinGame", game);
+  });
+
+  socket.on("roundOver", (gameCode, roundWinnerName) => {
+    game = findGame(gameCode);
+    game.endRound(roundWinnerName);
+    game.updateHands();
+    console.log(game);
+    io.to(game.getCode()).emit("joinGame", game);
   });
 
   socket.on("disconnect", (reason) => {
