@@ -56,7 +56,29 @@ class Game {
       "Owns your favorite museum",
       "You will be exept from paying taxes while dating them",
       "Treats your parents well",
-      "Celebrity",
+      "is a celebrity",
+      "Smoothest talker",
+      "Made completely out of your favourite candy",
+      "Great at kissing your neck",
+      "A night person",
+      "World's best advertising executive",
+      "Best selling author",
+      "Has abs that are a work of art",
+      "Has an ass tighter than a snare drum",
+      "Owns a time machine",
+      "Has 3 pet dragons",
+      "Can train you to be a jedi",
+      "Prince/Princess of Asgard",
+      "Owns a unicorn",
+      "Lives in a castle",
+      "Gives millions to charity",
+      "Vacation in any fictonal world",
+      "Owns your favourite internet pet",
+      "Famous drummer",
+      "Grants you a wish everytime you orgasm",
+      "Professional surfer",
+      "Rocket Scientist",
+      "Professional chef",
     ];
     this.redFlags = [
       "Has the face of a pug",
@@ -80,6 +102,17 @@ class Game {
       "Shits while cumming",
       "Their pubes have dreadlocks",
       "Still in jail",
+      "Clown pimp",
+      "Recites all the lines from Titanic in their sleep",
+      "Open mouth kisses their pet",
+      "Melts when wet",
+      "Throws up every time she sees your face",
+      "Hair transplants from dead butts",
+      "Counts your calories",
+      "Looks and smells like your dad",
+      "Constantly freestyles badly",
+      "Never flushes the toilet",
+      "Couples therapy on first date",
     ];
     this.turn = 1;
     this.curSingle = host.name;
@@ -167,14 +200,16 @@ class Game {
       var redflagsARR = [];
 
       for (var j = 0; j < PERKPERHAND; j++) {
-        var randPos = Math.floor(Math.random(0, this.perks.length));
+        var randPos1 = Math.floor(Math.random() * this.perks.length);
         //need [0] cuz splice returns an array of the one element popped
         //also shoudl tihnk abotu handling the empty array return case
-        perksARR.push(this.perks.splice(randPos, 1)[0]);
+        //perksARR.push(this.perks.splice(randPos, 1)[0]);
+        perksARR.push(this.perks[randPos1]);
       }
       for (var k = 0; k < RFPERHAND; k++) {
-        var randPos = Math.floor(Math.random(0, this.redFlags.length));
-        redflagsARR.push(this.redFlags.splice(randPos, 1)[0]);
+        var randPos2 = Math.floor(Math.random() * this.redFlags.length);
+        //redflagsARR.push(this.redFlags.splice(randPos, 1)[0]);
+        redflagsARR.push(this.redFlags[randPos2]);
       }
       var data = {
         name: this.players[i].name,
