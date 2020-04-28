@@ -7,8 +7,11 @@ class JoinWindow extends React.Component {
   }
   handleChange = (event) => {
     const target = event.target;
-    const value = target.value;
+    let value = target.value;
     const name = target.name;
+    if (name === "roomCode") {
+      value = value.toLowerCase();
+    }
     this.setState({ [name]: value });
   };
 
