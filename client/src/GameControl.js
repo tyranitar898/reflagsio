@@ -27,7 +27,6 @@ function CardButton(props) {
 }
 
 function GameControl(props) {
-  //TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
   const [selectedCards, setCards] = useState([]);
 
   var curName = props.name;
@@ -39,7 +38,7 @@ function GameControl(props) {
   let isCurSingle = false;
   if (game.curSingle === curName) {
     isCurSingle = true;
-    single = <p>you're the cur single</p>;
+    single = <p>You are the cur single</p>;
   }
   console.log("Game control updated");
 
@@ -67,7 +66,9 @@ function GameControl(props) {
     }
   };
 
-  const addItem = (card) => {
+  const addRFToMatch = () => {};
+
+  const addPerksToMatch = (card) => {
     var temp = selectedCards;
     temp.push(card);
     if (selectedCards.length > NUMPERKSSUBMIT) {
@@ -91,7 +92,12 @@ function GameControl(props) {
       gamecode={game.code}
       key={date.from + index}
       value={
-        date.from + " made " + "1. " + date.perks[0] + "2. " + date.perks[1]
+        date.from +
+        " made sm1 who" +
+        " 1. " +
+        date.perks[0] +
+        " 2. " +
+        date.perks[1]
       }
       cardOnClick={sendWinningMatch}
     />
@@ -104,7 +110,7 @@ function GameControl(props) {
       gamecode={game.code}
       key={card}
       value={card}
-      cardOnClick={addItem}
+      cardOnClick={addPerksToMatch}
     />
   ));
 
@@ -115,7 +121,7 @@ function GameControl(props) {
       gamecode={game.code}
       key={card}
       value={card}
-      cardOnClick={addItem}
+      cardOnClick={addRFToMatch}
     />
   ));
 

@@ -4,8 +4,8 @@ import StartControl from "./StartControl";
 import GameControl from "./GameControl";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8000");
-//const socket = io("https://redflagsio.herokuapp.com/");
+//const socket = io("http://localhost:8000");
+const socket = io("https://redflagsio.herokuapp.com/");
 //Socket responses
 
 class App extends React.Component {
@@ -89,16 +89,13 @@ class App extends React.Component {
         />
       );
     }
-    return (
-      <div>
-        {MenuOrStart}
-        <button name="disconnect" onClick={this.disconnect}>
-          X
-        </button>
-      </div>
-    );
+    return <div>{MenuOrStart}</div>;
   }
 }
+
+/*<button name="disconnect" onClick={this.disconnect}>
+          X
+        </button> */
 
 function findHand(name, game) {
   for (var i = 0; i < game.hands.length; i++) {

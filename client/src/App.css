@@ -92,14 +92,15 @@ input {
   border-bottom: 1px solid #eee;
   font-family: Nunito;
   font-size: 16px;
+  width: 30%;
 }
 
 button {
   background: white;
   color: black;
   font-size: 18px;
-  width: 20%;
-  height: 30%;
+  width: 30%;
+  height: 100px;
 }
 
 button#cards {
