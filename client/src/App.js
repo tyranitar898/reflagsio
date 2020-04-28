@@ -23,25 +23,21 @@ class App extends React.Component {
 
   componentDidMount() {
     this.state.socket.on("createGame", (game) => {
-      console.log(game);
+      //console.log(game);
       this.setState({ game: game, roomcode: game.code, isHost: true });
     });
     this.state.socket.on("joinGame", (game) => {
-      console.log(this.state.name);
+      //console.log(this.state.name);
       var hand = findHand(this.state.name, game);
       //console.log("update game from joinGame");
       //console.log(game);
       this.setState({ game: game, roomcode: game.code, hand: hand });
     });
     this.state.socket.on("startGame", (game) => {
-      console.log(this.state.name);
+      //console.log(this.state.name);
       var hand = findHand(this.state.name, game);
-      console.log(game);
+      //console.log(game);
       this.setState({ game: game, roomcode: game.code, hand: hand });
-    });
-    this.state.socket.on("sendDates", (game) => {
-      console.log(game);
-      this.setState({ game: game });
     });
   }
 
@@ -75,6 +71,7 @@ class App extends React.Component {
     if (this.state.game.isActive) {
       MenuOrStart = (
         <GameControl
+          name={this.state.name}
           socket={this.state.socket}
           game={this.state.game}
           hand={this.state.hand}
@@ -92,16 +89,13 @@ class App extends React.Component {
         />
       );
     }
-    return (
-      <div>
-        {MenuOrStart}
-        <button name="disconnect" onClick={this.disconnect}>
-          X
-        </button>
-      </div>
-    );
+    return <div>{MenuOrStart}</div>;
   }
 }
+
+/*<button name="disconnect" onClick={this.disconnect}>
+          X
+        </button> */
 
 function findHand(name, game) {
   for (var i = 0; i < game.hands.length; i++) {
