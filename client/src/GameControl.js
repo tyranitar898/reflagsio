@@ -20,10 +20,11 @@ const sendCardButton = () => {
 }; */
 function CardButton(props) {
   var cardName = props.value;
+  var idName = props.idName;
 
   // Correct! There is no need to specify the key here:
   return (
-    <button onClick={() => props.cardOnClick(cardName)} id="cards">
+    <button onClick={() => props.cardOnClick(cardName)} id={idName}>
       {cardName}
     </button>
   );
@@ -110,6 +111,7 @@ function GameControl(props) {
   const yourPerks = perks.map((card) => (
     // Correct! Key should be specified inside the array.
     <CardButton
+      idName={"cards-perk"}
       socket={props.socket}
       gamecode={game.code}
       key={card}
@@ -121,6 +123,7 @@ function GameControl(props) {
   const yourRfs = rfs.map((card) => (
     // Correct! Key should be specified inside the array.
     <CardButton
+      idName={"cards-rf"}
       socket={props.socket}
       gamecode={game.code}
       key={card}
@@ -139,7 +142,7 @@ function GameControl(props) {
   return (
     <div>
       <h1>
-        Welcome {props.name}| Current Turn: {props.game.turn}
+        Welcome {props.name} | Current Turn: {props.game.turn}
       </h1>
       {single}
       <h1>Red Flag game code: {props.game.code}</h1>

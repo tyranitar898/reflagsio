@@ -112,7 +112,11 @@ button#cards {
   padding: 10px;
 }
 
-button#cards:hover {
+button#cards-perk:hover {
+  background: green;
+}
+
+button#cards-rf:hover {
   background: red;
 }
 
