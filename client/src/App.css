@@ -103,7 +103,8 @@ button {
   height: 100px;
 }
 
-button#cards {
+button.cards-perk,
+button.cards-rf {
   vertical-align: top;
   background: white;
   width: 20%;
@@ -112,11 +113,23 @@ button#cards {
   padding: 10px;
 }
 
-button#cards-perk:hover {
+button.cards-perk:hover {
   background: green;
 }
 
-button#cards-rf:hover {
+button.cards-perk-clicked {
+  background: green;
+  width: 20%;
+  height: 200px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+button.cards-rf:hover {
+  background: red;
+}
+
+button.cards-rf-clicked {
   background: red;
 }
 
