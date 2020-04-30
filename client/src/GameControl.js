@@ -19,11 +19,28 @@ const sendCardButton = () => {
   props.socket.emit("sendCardButton", props.gamecode, props.value[0]);
 }; */
 function CardButton(props) {
+  const [clicked, setClicked] = useState(false);
+  var selectedPerks = [];
+  if (props.selectedPerks) {
+    selectedPerks = props.selectedPerks;
+  }
+
   var cardName = props.value;
+  var className = props.className;
+
+  if (clicked) {
+    className += "-clicked";
+  }
 
   // Correct! There is no need to specify the key here:
   return (
-    <button onClick={() => props.cardOnClick(cardName)} id="cards">
+    <button
+      onClick={() => {
+        props.cardOnClick(cardName);
+        setClicked(!clicked);
+      }}
+      className={className}
+    >
       {cardName}
     </button>
   );
@@ -32,6 +49,7 @@ function CardButton(props) {
 
 function GameControl(props) {
   const [selectedCards, setCards] = useState([]);
+  const [curTurn, setTurn] = useState(0);
 
   var curName = props.name;
   var game = props.game;
@@ -40,10 +58,16 @@ function GameControl(props) {
   var dates = game.dates;
   let single = null;
   let isCurSingle = false;
+
   if (game.curSingle === curName) {
     isCurSingle = true;
     single = <p>You are the cur single</p>;
   }
+  if (game.turn !== curTurn) {
+    setTurn(game.turn);
+    setCards([]);
+  }
+
   console.log("Game control updated");
 
   const sendWinningMatch = (card) => {
@@ -74,11 +98,21 @@ function GameControl(props) {
 
   const addPerksToMatch = (card) => {
     var temp = selectedCards;
+    let index = temp.indexOf(card);
+    console.log(index);
+    if (index > -1) {
+      temp.splice(index, 1);
+    } else {
+      temp.push(card);
+    }
+    setCards([...temp]);
+    /*
+    var temp = selectedCards;
     temp.push(card);
     if (selectedCards.length > NUMPERKSSUBMIT) {
       temp.shift();
     }
-    setCards([...temp]);
+    setCards([...temp]);*/
   };
 
   const players = game.players;
@@ -107,23 +141,26 @@ function GameControl(props) {
     />
   ));
 
-  const yourPerks = perks.map((card) => (
+  const yourPerks = perks.map((card, index) => (
     // Correct! Key should be specified inside the array.
     <CardButton
+      className={"cards-perk"}
       socket={props.socket}
       gamecode={game.code}
-      key={card}
+      key={card + index}
       value={card}
       cardOnClick={addPerksToMatch}
+      selectedPerks={selectedCards}
     />
   ));
 
-  const yourRfs = rfs.map((card) => (
+  const yourRfs = rfs.map((card, index) => (
     // Correct! Key should be specified inside the array.
     <CardButton
+      className={"cards-rf"}
       socket={props.socket}
       gamecode={game.code}
-      key={card}
+      key={card + index}
       value={card}
       cardOnClick={addRFToMatch}
     />
@@ -134,12 +171,10 @@ function GameControl(props) {
     <li key={index}>{card}</li>
   ));
 
-  console.log(game);
-
   return (
     <div>
       <h1>
-        Welcome {props.name}| Current Turn: {props.game.turn}
+        Welcome {props.name} | Current Turn: {props.game.turn}
       </h1>
       {single}
       <h1>Red Flag game code: {props.game.code}</h1>
@@ -147,9 +182,9 @@ function GameControl(props) {
       {playerList}
       <h1>Matches for {props.game.curSingle}</h1>
       {datesList}
-      <h1>Your Perks</h1>
+      <h1>Your Perks (Select 2)</h1>
       {yourPerks}
-      <h1>Your Red Flags</h1>
+      <h1>Your Red Flags (Select 1)</h1>
       {yourRfs}
       <h1>Your ideal match for {props.game.curSingle}</h1>
       {matchCards}
