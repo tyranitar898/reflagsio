@@ -70,7 +70,7 @@ function GameControl(props) {
 
   console.log("Game control updated");
 
-  const sendWinningMatch = (card) => {
+  const handleDateCards = (card) => {
     let splitStr = card.split(" made ");
     //using split str rn but should make card class?
     let cardCreatorStr = splitStr[0];
@@ -88,7 +88,8 @@ function GameControl(props) {
           "attachRFtoMatch",
           selectedRFs[0],
           props.game.code,
-          cardCreatorStr
+          cardCreatorStr,
+          props.name
         );
       } else {
         //tell them they need to seelct RF
@@ -96,7 +97,7 @@ function GameControl(props) {
     }
   };
 
-  const sendPerksofMatch = () => {
+  const sendPerksofDate = () => {
     if (selectedPerks.length === NUMPERKSSUBMIT) {
       curSocket.emit("sendMatch", props.game.code, props.name, selectedPerks);
     } else {
@@ -140,18 +141,9 @@ function GameControl(props) {
     <CardButton
       socket={curSocket}
       gamecode={game.code}
-      key={date.from + index}
-      value={
-        date.from +
-        " made sm1 who" +
-        " 1. " +
-        date.perks[0] +
-        " 2. " +
-        date.perks[1] +
-        " however, he/she " +
-        date.rf[0]
-      }
-      cardOnClick={sendWinningMatch}
+      key={date.dateCreator + index}
+      value={date.dateStr}
+      cardOnClick={handleDateCards}
     />
   ));
 
@@ -209,7 +201,7 @@ function GameControl(props) {
       <div>
         <h1>Your ideal match for {props.game.curSingle}</h1>
         {matchCards}
-        <button onClick={sendPerksofMatch}>Submit match</button>
+        <button onClick={sendPerksofDate}>Submit match</button>
       </div>
     </div>
   );

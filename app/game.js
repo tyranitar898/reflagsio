@@ -7,112 +7,112 @@ class Game {
     this.players = [host];
     this.isActive = false;
     this.perks = [
-      "Never offends anyone",
-      "Can talk to animals",
-      "Is a ninja",
-      "Best personal fitness coach",
-      "Cleanest room",
-      "Is an actual pokemon trainer",
-      "Owns the New York Knicks",
-      "Freinds with Post Malone",
-      "Nascar Driver",
-      "Effective farmer",
-      "Best freinds with your sibilings",
-      "Works for WHO",
-      "Wears a scarf always",
-      "Their car is the trasnformer Bumble bee",
-      "Always puts Jesus first",
+      "never offends anyone",
+      "can talk to animals",
+      "is a ninja",
+      "is the best personal fitness coach",
+      "has the cleanest room",
+      "is an actual pokemon trainer",
+      "owns the New York Knicks",
+      "is freinds with Post Malone",
+      "is a Nascar Driver",
+      "is a Effective farmer",
+      "is best freinds with your sibilings",
+      "works for WHO",
+      "wears a scarf always",
+      "owns the trasnformer Bumble Bee",
+      "always puts Jesus first",
       "is Tony Stark",
-      "Tall",
-      "Athletic",
-      "Gets along with everyone",
-      "Won't have to work while dating",
-      "Writes poetry",
-      "Loves dogs",
-      "Famous rapper",
-      "Loves video games",
-      "Owns every board game",
-      "Big butt",
-      "Always gives you the perfect gift",
-      "Has all the same hobbies as you",
-      "Owns a successful startup",
-      "Believes you are the most attractive person they've seen",
-      "Has a magical glass full of infinite beer",
-      "Found the golden ticket and now owns Willy Wonka's chocolate factory",
-      "Owns your favourite sports team",
-      "Supportive",
-      "Adventurous",
-      "Your parents love them",
-      "Love cats",
-      "The hot barista",
-      "Is Tik Tok famous",
-      "Owns a pony farm",
-      "Respects your boundaries",
-      "Has the job you always wanted",
-      "Can shapeshift into any animal",
-      "Only takes one trip to bring groceries",
-      "Makes sure you're always oiled up",
-      "Professional fighter",
-      "Owns your favorite museum",
-      "You will be exept from paying taxes while dating them",
-      "Treats your parents well",
+      "could've played in the NBA",
+      "is an athletic freak",
+      "gets along with everyone",
+      "won't have to work while dating",
+      "writes poetry",
+      "loves dogs",
+      "is a famous rapper",
+      "loves video games",
+      "wwns every board game",
+      "has a big butt",
+      "always gives you the perfect gift",
+      "has all the same hobbies as you",
+      "owns a successful startup",
+      "believes you are the most attractive person they've seen",
+      "has a magical glass full of infinite beer",
+      "found the golden ticket and now owns Willy Wonka's chocolate factory",
+      "owns your favourite sports team",
+      "is supportive",
+      "is adventurous",
+      "has your parents' full approval",
+      "loves cats",
+      "is a hot barista",
+      "is Tik Tok famous",
+      "owns a pony farm",
+      "respects your boundaries",
+      "has the job you always wanted",
+      "can shapeshift into any animal",
+      "only takes one trip to bring groceries",
+      "makes sure you're always oiled up",
+      "is a pro fighter",
+      "owns your favorite museum",
+      "is exempt from paying taxes while dating you",
+      "treats your parents well",
       "is a celebrity",
-      "Smoothest talker",
-      "Made completely out of your favourite candy",
-      "Great at kissing your neck",
-      "A night person",
-      "World's best advertising executive",
-      "Best selling author",
-      "Has abs that are a work of art",
-      "Has an ass tighter than a snare drum",
-      "Owns a time machine",
-      "Has 3 pet dragons",
-      "Can train you to be a jedi",
-      "Prince/Princess of Asgard",
-      "Owns a unicorn",
-      "Lives in a castle",
-      "Gives millions to charity",
-      "Vacation in any fictonal world",
-      "Owns your favourite internet pet",
-      "Famous drummer",
-      "Grants you a wish everytime you orgasm",
-      "Professional surfer",
-      "Rocket Scientist",
-      "Professional chef",
+      "is the smoothest talker",
+      "is made completely out of your favourite candy",
+      "is great at kissing your neck",
+      "doesn't need to sleep ever",
+      "is world's best advertising executive",
+      "is best selling author",
+      "has abs that are a work of art",
+      "has an ass tighter than a snare drum",
+      "owns a time machine",
+      "has 3 pet dragons",
+      "can train you to be a jedi",
+      "is Prince/Princess of Asgard",
+      "owns a unicorn",
+      "lives in a castle",
+      "gives millions to charity",
+      "lets you have a vacation in any fictonal world",
+      "owns your favourite internet pet",
+      "is a famous drummer",
+      "grants you a wish everytime you orgasm",
+      "can take you surfing on any wave",
+      "can take you to space",
+      "makes michelin star level food",
     ];
     this.redFlags = [
-      "Has the face of a pug",
-      "Laughs like a chipmunk",
-      "Constantly plotting to kill you",
-      "Still in 4th grade",
-      "Is David Zhang",
-      "Watches too much porn",
+      "has the face of a pug",
+      "laughs like a chipmunk",
+      "is constantly plotting to kill you",
+      "is still in 4th grade",
+      "is David Zhang",
+      "watches too much porn",
       "is a vampire",
-      "Hasn't showered since birth",
-      "Farts A LOT",
-      "Describes all food as yummy yummy",
-      "Calls their pets their children",
-      "Regularly hosts Tea Parties for dolls",
-      "Can't do basic addition",
-      "Walks around the house naked",
-      "Never cooks",
-      "Most toxic gamer",
-      "Ubers everywhere",
-      "Will eat everything even if its not food",
-      "Shits while cumming",
-      "Their pubes have dreadlocks",
-      "Still in jail",
-      "Clown pimp",
-      "Recites all the lines from Titanic in their sleep",
-      "Open mouth kisses their pet",
-      "Melts when wet",
-      "Throws up every time she sees your face",
-      "Hair transplants from dead butts",
-      "Counts your calories",
-      "Looks and smells like your dad",
-      "Constantly freestyles badly",
-      "Never flushes the toilet",
-      "Couples therapy on first date",
+      "hasn't showered since birth",
+      "farts A LOT",
+      "describes all food as yummy yummy",
+      "calls their pets their children",
+      "regularly hosts Tea Parties for dolls",
+      "can't do basic addition",
+      "walks around the house naked",
+      "never cooks",
+      "is the most toxic gamer",
+      "ubers everywhere",
+      "will eat everything even if its not food",
+      "shits while cumming",
+      "has pubes with dreadlocks",
+      "is still in jail",
+      "is a clown pimp",
+      "recites all the lines from Titanic in their sleep",
+      "open mouth kisses their pet",
+      "melts when wet",
+      "throws up every time she sees your face",
+      "has hair transplants from dead butts",
+      "counts your calories",
+      "looks and smells like your dad",
+      "constantly freestyles badly",
+      "never flushes the toilet",
+      "does couples therapy on first date",
     ];
     this.turn = 1;
     this.curSingle = host.name;
@@ -126,11 +126,14 @@ class Game {
   joinPlayer(player) {
     if (!this.isActive) {
       //inactive game\
-
-      this.players.push(player);
-      //bad because its using obj notation
-      this.points[player.name] = 0;
-      return true;
+      if (this.nameTaken(player)) {
+        return false;
+      } else {
+        this.players.push(player);
+        //bad because its using obj notation
+        this.points[player.name] = 0;
+        return true;
+      }
     } else {
       //active game
       if (this.nameTaken(player)) {
@@ -164,12 +167,23 @@ class Game {
     this.dates = [];
   }
 
-  addRedFlagToDate(fromPlayer, RFstr) {
+  addRedFlagToDate(dateCreator, RFstr, dateRuiner) {
+    //check if already ruined a date in this round
     for (var i = 0; i < this.dates.length; i++) {
       var curDate = this.dates[i];
-      if (curDate.from === fromPlayer) {
-        if (curDate.rf.length === 0) {
+      if (curDate.rfFromPlayer === dateRuiner) {
+        return;
+      }
+    }
+    //if not add
+    for (var i = 0; i < this.dates.length; i++) {
+      var curDate = this.dates[i];
+
+      if (curDate.dateCreator === dateCreator) {
+        if (curDate.rfFromPlayer === "") {
+          curDate.rfFromPlayer = dateRuiner;
           curDate.rf.push(RFstr);
+          curDate.dateStr += " however, he/she " + RFstr;
         } else {
           //sm1 already put an RF on
         }
@@ -179,13 +193,20 @@ class Game {
 
   addDate(fromPlayer, perks) {
     for (var i = 0; i < this.dates.length; i++) {
-      if (this.dates[i].from === fromPlayer) {
+      if (this.dates[i].dateCreator === fromPlayer) {
         //already submitted a match
         console.log("already submitted a match");
         return;
       }
     }
-    this.dates.push({ from: fromPlayer, perks: perks, rf: [] });
+    this.dates.push({
+      dateCreator: fromPlayer,
+      perks: perks,
+      rfFromPlayer: "",
+      rf: [],
+      dateStr:
+        fromPlayer + " made sm1 who" + " 1. " + perks[0] + " 2. " + perks[1],
+    });
   }
 
   nameTaken(player) {

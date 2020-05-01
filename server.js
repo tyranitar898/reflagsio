@@ -104,12 +104,15 @@ io.on("connection", function (socket) {
     io.to(game.getCode()).emit("joinGame", game);
   });
 
-  socket.on("attachRFtoMatch", (RFtoBeAttached, gameCode, dateCreatorStr) => {
-    game = findGame(gameCode);
-    game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached);
-    console.log(game);
-    io.to(game.getCode()).emit("joinGame", game);
-  });
+  socket.on(
+    "attachRFtoMatch",
+    (RFtoBeAttached, gameCode, dateCreatorStr, dateRuinerStr) => {
+      game = findGame(gameCode);
+      game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached, dateRuinerStr);
+      console.log(game);
+      io.to(game.getCode()).emit("joinGame", game);
+    }
+  );
 
   socket.on("disconnect", (reason) => {
     if (game !== undefined) {
