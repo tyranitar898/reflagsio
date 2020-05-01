@@ -60,7 +60,19 @@ function GameControl(props) {
 
   if (game.curSingle === curName) {
     isCurSingle = true;
-    single = <p>You are the cur single</p>;
+    single = (
+      <p>
+        You are the current single (this means other playes are making dates for
+        you!)
+      </p>
+    );
+  } else {
+    single = (
+      <p>
+        {game.curSingle} is the current single <br /> (this means you and other
+        players are making dates for them)
+      </p>
+    );
   }
   if (game.turn !== curTurn) {
     setTurn(game.turn);
@@ -68,10 +80,8 @@ function GameControl(props) {
     setRFs([]);
   }
 
-  console.log("Game control updated");
-
   const handleDateCards = (card) => {
-    let splitStr = card.split(" made ");
+    let splitStr = card.split(" thinks ");
     //using split str rn but should make card class?
     let cardCreatorStr = splitStr[0];
 
@@ -98,10 +108,12 @@ function GameControl(props) {
   };
 
   const sendPerksofDate = () => {
-    if (selectedPerks.length === NUMPERKSSUBMIT) {
-      curSocket.emit("sendMatch", props.game.code, props.name, selectedPerks);
-    } else {
-      //tell them u need to pick another card
+    if (!isCurSingle) {
+      if (selectedPerks.length === NUMPERKSSUBMIT) {
+        curSocket.emit("sendMatch", props.game.code, props.name, selectedPerks);
+      } else {
+        //tell them u need to pick another card
+      }
     }
   };
 
@@ -184,18 +196,23 @@ function GameControl(props) {
       </h1>
       {single}
       <h1>Red Flag game code: {props.game.code}</h1>
-      <h1>Players in this Game</h1>
-      {playerList}
+      <div id="gameRoomInfo">
+        <h1>Players in this Game</h1>
+        {playerList}
+      </div>
       <div>
         <h1>Matches for {props.game.curSingle}</h1>
         {datesList}
       </div>
       <div>
-        <h1>Your Perks (Select 2)</h1>
+        <h1>Your Perks (Select 2 and submit)</h1>
         {yourPerks}
       </div>
       <div>
-        <h1>Your Red Flags (Select 1)</h1>
+        <h1>
+          Your Red Flags <br />
+          (Select 1 and select date you want to ruin)
+        </h1>
         {yourRfs}
       </div>
       <div>

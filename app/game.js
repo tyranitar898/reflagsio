@@ -183,7 +183,7 @@ class Game {
         if (curDate.rfFromPlayer === "") {
           curDate.rfFromPlayer = dateRuiner;
           curDate.rf.push(RFstr);
-          curDate.dateStr += " however, he/she " + RFstr;
+          curDate.dateStr += " but " + RFstr + " is perfect for you!";
         } else {
           //sm1 already put an RF on
         }
@@ -205,7 +205,12 @@ class Game {
       rfFromPlayer: "",
       rf: [],
       dateStr:
-        fromPlayer + " made sm1 who" + " 1. " + perks[0] + " 2. " + perks[1],
+        fromPlayer +
+        " thinks someone who " +
+        "" +
+        perks[0] +
+        " and " +
+        perks[1],
     });
   }
 

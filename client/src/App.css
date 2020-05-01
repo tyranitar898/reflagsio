@@ -37,7 +37,7 @@
   }
 }
 body {
-  font-family: "Nunito";
+  margin-left: 20px;
 }
 
 h2 {
@@ -83,16 +83,23 @@ label {
   padding: 10px 20px;
 }
 
+#gameRoomInfo {
+  position: fixed;
+  top: 0;
+  left: 85%;
+  font-size: 12px;
+}
+
 input {
   padding: 10px 20px;
   background: #eee;
   border: 1;
-  width: 50%;
+  height: 78px;
   background: #fff;
   border-bottom: 1px solid #eee;
   font-family: Nunito;
-  font-size: 16px;
-  width: 30%;
+  font-size: 20px;
+  width: 40%;
 }
 
 button {
@@ -101,7 +108,7 @@ button {
   color: black;
   font-size: 18px;
   width: 30%;
-  height: 100px;
+  height: 120px;
 }
 
 button.cards-perk,
@@ -112,6 +119,7 @@ button.cards-rf {
   height: 200px;
   border-radius: 5px;
   padding: 10px;
+  margin: 2px;
 }
 
 button.cards-perk:hover {
