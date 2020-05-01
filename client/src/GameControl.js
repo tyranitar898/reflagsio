@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
 
 const NUMPERKSSUBMIT = 2;
@@ -20,11 +20,6 @@ const sendCardButton = () => {
 }; */
 function CardButton(props) {
   const [clicked, setClicked] = useState(false);
-  var selectedPerks = [];
-  if (props.selectedPerks) {
-    selectedPerks = props.selectedPerks;
-  }
-
   var cardName = props.value;
   var className = props.className;
 
@@ -48,9 +43,11 @@ function CardButton(props) {
 //TODO REFACTOR FOLLOWING. change cardbutton fucntion to a class ? so it can have states cuz rn its calling updateslectedcards every time it maps???
 
 function GameControl(props) {
-  const [selectedCards, setCards] = useState([]);
+  const [selectedPerks, setPerks] = useState([]);
+  const [selectedRFs, setRFs] = useState([]);
   const [curTurn, setTurn] = useState(0);
 
+  var curSocket = props.socket;
   var curName = props.name;
   var game = props.game;
   var perks = props.hand.perks;
@@ -58,6 +55,8 @@ function GameControl(props) {
   var dates = game.dates;
   let single = null;
   let isCurSingle = false;
+  const players = game.players;
+  console.log(game);
 
   if (game.curSingle === curName) {
     isCurSingle = true;
@@ -65,39 +64,48 @@ function GameControl(props) {
   }
   if (game.turn !== curTurn) {
     setTurn(game.turn);
-    setCards([]);
+    setPerks([]);
+    setRFs([]);
   }
 
   console.log("Game control updated");
 
   const sendWinningMatch = (card) => {
+    let splitStr = card.split(" made ");
+    //using split str rn but should make card class?
+    let cardCreatorStr = splitStr[0];
+
     if (isCurSingle) {
-      let splitStr = card.split(" made ");
-      //using split str rn but should make card class?
-      let roundWinnerName = splitStr[0];
-      console.log(roundWinnerName);
       //update winning match
-      props.socket.emit("roundOver", props.game.code, roundWinnerName);
+      if (players.length - 1 === dates.length) {
+        curSocket.emit("roundOver", props.game.code, cardCreatorStr);
+      } else {
+        //tell them not everyone submitted a match
+      }
+    } else {
+      if (selectedRFs.length === 1) {
+        curSocket.emit(
+          "attachRFtoMatch",
+          selectedRFs[0],
+          props.game.code,
+          cardCreatorStr
+        );
+      } else {
+        //tell them they need to seelct RF
+      }
     }
   };
 
   const sendPerksofMatch = () => {
-    if (selectedCards.length === NUMPERKSSUBMIT) {
-      props.socket.emit(
-        "sendMatch",
-        props.game.code,
-        props.name,
-        selectedCards
-      );
+    if (selectedPerks.length === NUMPERKSSUBMIT) {
+      curSocket.emit("sendMatch", props.game.code, props.name, selectedPerks);
     } else {
       //tell them u need to pick another card
     }
   };
 
-  const addRFToMatch = () => {};
-
   const addPerksToMatch = (card) => {
-    var temp = selectedCards;
+    var temp = selectedPerks;
     let index = temp.indexOf(card);
     console.log(index);
     if (index > -1) {
@@ -105,17 +113,21 @@ function GameControl(props) {
     } else {
       temp.push(card);
     }
-    setCards([...temp]);
-    /*
-    var temp = selectedCards;
-    temp.push(card);
-    if (selectedCards.length > NUMPERKSSUBMIT) {
-      temp.shift();
-    }
-    setCards([...temp]);*/
+    setPerks([...temp]);
   };
 
-  const players = game.players;
+  const addRFToMatch = (card) => {
+    var temp = selectedRFs;
+    let index = temp.indexOf(card);
+    console.log(index);
+    if (index > -1) {
+      temp.splice(index, 1);
+    } else {
+      temp.push(card);
+    }
+    setRFs([...temp]);
+  };
+
   const playerList = players.map((player) => (
     // Correct! Key should be specified inside the array.
 
@@ -126,7 +138,7 @@ function GameControl(props) {
   const datesList = dates.map((date, index) => (
     // Correct! Key should be specified inside the array.
     <CardButton
-      socket={props.socket}
+      socket={curSocket}
       gamecode={game.code}
       key={date.from + index}
       value={
@@ -135,7 +147,9 @@ function GameControl(props) {
         " 1. " +
         date.perks[0] +
         " 2. " +
-        date.perks[1]
+        date.perks[1] +
+        " however, he/she " +
+        date.rf[0]
       }
       cardOnClick={sendWinningMatch}
     />
@@ -145,12 +159,12 @@ function GameControl(props) {
     // Correct! Key should be specified inside the array.
     <CardButton
       className={"cards-perk"}
-      socket={props.socket}
+      socket={curSocket}
       gamecode={game.code}
       key={card + index}
       value={card}
       cardOnClick={addPerksToMatch}
-      selectedPerks={selectedCards}
+      selectedPerks={selectedPerks}
     />
   ));
 
@@ -158,7 +172,7 @@ function GameControl(props) {
     // Correct! Key should be specified inside the array.
     <CardButton
       className={"cards-rf"}
-      socket={props.socket}
+      socket={curSocket}
       gamecode={game.code}
       key={card + index}
       value={card}
@@ -166,7 +180,7 @@ function GameControl(props) {
     />
   ));
 
-  const matchCards = selectedCards.map((card, index) => (
+  const matchCards = selectedPerks.map((card, index) => (
     // Correct! Key should be specified inside the array.
     <li key={index}>{card}</li>
   ));
@@ -180,15 +194,23 @@ function GameControl(props) {
       <h1>Red Flag game code: {props.game.code}</h1>
       <h1>Players in this Game</h1>
       {playerList}
-      <h1>Matches for {props.game.curSingle}</h1>
-      {datesList}
-      <h1>Your Perks (Select 2)</h1>
-      {yourPerks}
-      <h1>Your Red Flags (Select 1)</h1>
-      {yourRfs}
-      <h1>Your ideal match for {props.game.curSingle}</h1>
-      {matchCards}
-      <button onClick={sendPerksofMatch}>Submit match</button>
+      <div>
+        <h1>Matches for {props.game.curSingle}</h1>
+        {datesList}
+      </div>
+      <div>
+        <h1>Your Perks (Select 2)</h1>
+        {yourPerks}
+      </div>
+      <div>
+        <h1>Your Red Flags (Select 1)</h1>
+        {yourRfs}
+      </div>
+      <div>
+        <h1>Your ideal match for {props.game.curSingle}</h1>
+        {matchCards}
+        <button onClick={sendPerksofMatch}>Submit match</button>
+      </div>
     </div>
   );
 }

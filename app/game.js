@@ -128,7 +128,7 @@ class Game {
       //inactive game\
 
       this.players.push(player);
-      //bad because its using
+      //bad because its using obj notation
       this.points[player.name] = 0;
       return true;
     } else {
@@ -164,6 +164,19 @@ class Game {
     this.dates = [];
   }
 
+  addRedFlagToDate(fromPlayer, RFstr) {
+    for (var i = 0; i < this.dates.length; i++) {
+      var curDate = this.dates[i];
+      if (curDate.from === fromPlayer) {
+        if (curDate.rf.length === 0) {
+          curDate.rf.push(RFstr);
+        } else {
+          //sm1 already put an RF on
+        }
+      }
+    }
+  }
+
   addDate(fromPlayer, perks) {
     for (var i = 0; i < this.dates.length; i++) {
       if (this.dates[i].from === fromPlayer) {
@@ -172,7 +185,7 @@ class Game {
         return;
       }
     }
-    this.dates.push({ from: fromPlayer, perks: perks });
+    this.dates.push({ from: fromPlayer, perks: perks, rf: [] });
   }
 
   nameTaken(player) {

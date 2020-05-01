@@ -65,7 +65,6 @@ io.on("connection", function (socket) {
           "(Server): " + player.name + " joined game " + game.getCode()
         );
         console.log("(Server): " + player.name + " joined a game");
-
         socket.join(game.getCode());
         io.to(game.getCode()).emit("joinGame", game);
       } else {
@@ -101,6 +100,13 @@ io.on("connection", function (socket) {
     game = findGame(gameCode);
     game.endRound(roundWinnerName);
     game.updateHands();
+    console.log(game);
+    io.to(game.getCode()).emit("joinGame", game);
+  });
+
+  socket.on("attachRFtoMatch", (RFtoBeAttached, gameCode, dateCreatorStr) => {
+    game = findGame(gameCode);
+    game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached);
     console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });

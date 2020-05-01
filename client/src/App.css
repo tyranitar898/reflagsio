@@ -96,6 +96,7 @@ input {
 }
 
 button {
+  vertical-align: top;
   background: white;
   color: black;
   font-size: 18px;
@@ -114,10 +115,12 @@ button.cards-rf {
 }
 
 button.cards-perk:hover {
+  vertical-align: top;
   background: green;
 }
 
 button.cards-perk-clicked {
+  vertical-align: top;
   background: green;
   width: 20%;
   height: 200px;
@@ -126,11 +129,17 @@ button.cards-perk-clicked {
 }
 
 button.cards-rf:hover {
+  vertical-align: top;
   background: red;
 }
 
 button.cards-rf-clicked {
+  vertical-align: top;
   background: red;
+  width: 20%;
+  height: 200px;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 li#playerActive {
