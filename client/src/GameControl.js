@@ -62,8 +62,8 @@ function GameControl(props) {
     isCurSingle = true;
     single = (
       <p>
-        You are the current single (this means other playes are making dates for
-        you!)
+        You are the current single (this means other players are making dates
+        for you!)
       </p>
     );
   } else {
@@ -87,7 +87,16 @@ function GameControl(props) {
 
     if (isCurSingle) {
       //update winning match
+
+      //checks that all cards have an RF attached
       if (players.length - 1 === dates.length) {
+        for (var i = 0; i < dates.length; i++) {
+          var curDate = dates[i];
+          if (curDate.rf.length !== 1) {
+            return;
+          }
+        }
+
         curSocket.emit("roundOver", props.game.code, cardCreatorStr);
       } else {
         //tell them not everyone submitted a match

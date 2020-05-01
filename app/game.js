@@ -16,7 +16,7 @@ class Game {
       "owns the New York Knicks",
       "is freinds with Post Malone",
       "is a Nascar Driver",
-      "is a Effective farmer",
+      "is an effective farmer",
       "is best freinds with your sibilings",
       "works for WHO",
       "wears a scarf always",
@@ -31,7 +31,7 @@ class Game {
       "loves dogs",
       "is a famous rapper",
       "loves video games",
-      "wwns every board game",
+      "wins every board game",
       "has a big butt",
       "always gives you the perfect gift",
       "has all the same hobbies as you",
@@ -79,6 +79,25 @@ class Game {
       "can take you surfing on any wave",
       "can take you to space",
       "makes michelin star level food",
+      "is Amazon",
+      "loves to cuddle",
+      "the lead singer of your favorite brand",
+      "completely blind to all your flaws",
+      "finishes your leftovers",
+      "can sing like Shawn Mendes",
+      "has perfect pitch",
+      "every time they spank you $100 appears in your bank account",
+      "gives you mind shattering orgasm that leaves you sore for days",
+      "heir to the throne of Gondor",
+      "rules over westoros",
+      "can fly",
+      "friends with Harry Styles",
+      "can teleport",
+      "is an Avenger",
+      "gives great massages",
+      "wants to travel the world with you",
+      "randomly surprises you with flowers",
+      "can instantly cure you of any disease",
     ];
     this.redFlags = [
       "has the face of a pug",
@@ -113,6 +132,73 @@ class Game {
       "constantly freestyles badly",
       "never flushes the toilet",
       "does couples therapy on first date",
+      "only wears pink underwear",
+      "steals all the blankets from you",
+      "sleeps upside down",
+      "has to cuddle your feet to sleep",
+      "snores to the tune of the star-spangled banner",
+      "never turns off the sink",
+      "doesn’t use toilet paper to wipe",
+      "needs you to chew their food for them",
+      "texts one word at a time",
+      "has a pig’s snout",
+      "bites his phone",
+      "has STDS",
+      "can never make you cum",
+      "proposes on the first date",
+      "baby talks to you during sex",
+      "sends nudes of their parents to you",
+      "asks to suck your toes as foreplay",
+      "always pees on you during sex",
+      "must at you while you shower",
+      "always compares you to her dad",
+      "walks around like a kangaroo",
+      "farts every time someone says their name",
+      "has a surgically attached fanny pack",
+      "asks you to push their belly button every 45 minutes",
+      "always suddenly remembers they forgot to turn off the oven 15 minutes into the drive and turns the car around",
+      "always argues with you that the earth is flat",
+      "eats with their feet",
+      "says he/she is an “entrepreneur” but actually sits around and reads Reddit all day",
+      "claps after sex",
+      "rates your performance after sex",
+      "can never make you cum",
+      "screams Make America Great Again when he/she cums",
+      "extremely rude to everyone else",
+      "keeps mosquitoes as pets",
+      "uses chili for lube",
+      "can only get turned on when they’re wearing your clothes",
+      "complains about their food to the waiter at every restaurant",
+      "only talks about themselves in the third person",
+      "spoils every TV show you watch",
+      "flirts with all you friends(both genders;))",
+      "writes erotic Donald Trump fan fiction",
+      "has a visible erection at all times",
+      "constantly checks Apple Watch during sex",
+      "can only cum while watching Bees",
+      "has already had 5 divorces",
+      "pulls your hair every time you walk through a door",
+      "killed Dumbledore",
+      "constantly getting kidnapped by Bowser",
+      "refuses to cover face while sneezing",
+      "can not drive",
+      "gets off from your friends’ feet pics",
+      "thinks global warming is fake",
+      "is an anti-vaxxer",
+      "hates pineapples and hotdogs",
+      "chews with mouth open",
+      "swallows their bubble tea whole",
+      "collects straws",
+      "puts milk in before the cereal",
+      "is still breastfeeding from their mom",
+      "uses Crayola as make up",
+      "cares for their Tamagotchi more than they care for you",
+      "only wears sunglasses indoors",
+      "fights every pigeon he sees",
+      "chews by manually moving their jaw up and down",
+      "voluteers at pornhub",
+      "refers to you as honey, sugar, flour, ½ teaspoon of salt",
+      "can only walk horizontally",
     ];
     this.turn = 1;
     this.curSingle = host.name;
@@ -175,6 +261,13 @@ class Game {
         return;
       }
     }
+
+    const endingOne = " is perfect for you!";
+    const endingTwo = " is ideal for you!";
+    const endingThree = " is a flawless match for you!";
+    const endingFour = " is a quintessential match for you!";
+    const ENDINGS = [endingOne, endingTwo, endingThree, endingFour];
+
     //if not add
     for (var i = 0; i < this.dates.length; i++) {
       var curDate = this.dates[i];
@@ -183,7 +276,9 @@ class Game {
         if (curDate.rfFromPlayer === "") {
           curDate.rfFromPlayer = dateRuiner;
           curDate.rf.push(RFstr);
-          curDate.dateStr += " but " + RFstr + " is perfect for you!";
+
+          var randPos = Math.floor(Math.random() * ENDINGS.length);
+          curDate.dateStr += " but " + RFstr + ENDINGS[randPos];
         } else {
           //sm1 already put an RF on
         }
