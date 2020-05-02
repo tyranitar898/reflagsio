@@ -16,8 +16,8 @@ const app = express();
 //RedFlags server vars
 var server = require("http").Server(app);
 var io = require("socket.io")(server, {
-  pingInterval: 10000,
-  pingTimeout: 30000,
+  pingInterval: 20000,
+  pingTimeout: 60000,
 });
 
 const port = process.env.PORT || 8000;
@@ -80,7 +80,6 @@ io.on("connection", function (socket) {
   socket.on("startGame", (gameCode, name) => {
     game = findGame(gameCode);
     game.isActive = true;
-
     console.log("(Server): " + gameCode + " has started");
     player = game.getPlayer(name);
     game.updateHands();
@@ -91,7 +90,6 @@ io.on("connection", function (socket) {
   socket.on("sendMatch", (gameCode, playerName, cards) => {
     game = findGame(gameCode);
     game.addDate(playerName, cards);
-
     console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
