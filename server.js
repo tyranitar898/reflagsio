@@ -58,6 +58,9 @@ io.on("connection", function (socket) {
     gameCode = data.roomCode;
 
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
 
     if (game) {
       if (game.joinPlayer(player)) {
@@ -79,6 +82,9 @@ io.on("connection", function (socket) {
 
   socket.on("startGame", (gameCode, name) => {
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
     game.isActive = true;
     console.log("(Server): " + gameCode + " has started");
     player = game.getPlayer(name);
@@ -89,6 +95,9 @@ io.on("connection", function (socket) {
 
   socket.on("sendMatch", (gameCode, playerName, cards) => {
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
     game.addDate(playerName, cards);
     console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
@@ -96,16 +105,22 @@ io.on("connection", function (socket) {
 
   socket.on("roundOver", (gameCode, roundWinnerName) => {
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
     game.endRound(roundWinnerName);
     game.updateHands();
     console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
-
+  //TOOD: add game=== null or undefined cheks...
   socket.on(
     "attachRFtoMatch",
     (RFtoBeAttached, gameCode, dateCreatorStr, dateRuinerStr) => {
       game = findGame(gameCode);
+      if (game === undefined && game === null) {
+        return;
+      }
       game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached, dateRuinerStr);
       console.log(game);
       io.to(game.getCode()).emit("joinGame", game);
