@@ -115,7 +115,7 @@ io.on("connection", function (socket) {
   );
 
   socket.on("disconnect", (reason) => {
-    if (game !== undefined) {
+    if (game !== undefined && game !== null) {
       game.disconnectPlayer(name);
       socket.join(game.getCode());
       io.to(game.getCode()).emit("joinGame", game);
