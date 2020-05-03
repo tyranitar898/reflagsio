@@ -6,7 +6,7 @@ function ListItem(props) {
 
 function HowTo(props) {
   return (
-    <div>
+    <div id="HowToDiv">
       <h1>Here's how you play</h1>
       <h2>Introduction</h2>
       <p>

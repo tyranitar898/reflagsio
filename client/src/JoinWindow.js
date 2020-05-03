@@ -26,7 +26,7 @@ class JoinWindow extends React.Component {
           <input
             id="name"
             type="text"
-            placeholder="Enter your name (must have >2 and <20 characters)"
+            placeholder="Enter your name"
             name="name"
             onChange={this.handleChange}
           />

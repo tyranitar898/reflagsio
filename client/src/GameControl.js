@@ -160,6 +160,7 @@ function GameControl(props) {
   const datesList = dates.map((date, index) => (
     // Correct! Key should be specified inside the array.
     <CardButton
+      className={"cards-dates"}
       socket={curSocket}
       gamecode={game.code}
       key={date.dateCreator + index}
@@ -199,12 +200,16 @@ function GameControl(props) {
   ));
 
   return (
-    <div>
-      <h1>
-        Welcome {props.name} | Current Turn: {props.game.turn}
-      </h1>
-      {single}
-      <h1>Red Flag game code: {props.game.code}</h1>
+    <div id="GameControl">
+      <div id="GameControlHeader">
+        <h1>
+          Welcome {props.name} | Current Turn: {props.game.turn}
+        </h1>
+        {single}
+        <h1>
+          Red Flag game code: <em>{props.game.code}</em>
+        </h1>
+      </div>
       <div id="gameRoomInfo">
         <h1>Players in this Game</h1>
         {playerList}
@@ -214,12 +219,13 @@ function GameControl(props) {
         {datesList}
       </div>
       <div>
-        <h1>Your Perks (Select 2 and submit)</h1>
+        <h1>Your Perks&#11088; (Select 2 and submit)</h1>
         {yourPerks}
       </div>
       <div>
         <h1>
-          Your Red Flags <br />
+          Your Red Flags &#128681;
+          <br />
           (Select 1 and select date you want to ruin)
         </h1>
         {yourRfs}
@@ -227,7 +233,7 @@ function GameControl(props) {
       <div>
         <h1>Your ideal match for {props.game.curSingle}</h1>
         {matchCards}
-        <button className="starterButtons" onClick={sendPerksofDate}>
+        <button className="backButtons" onClick={sendPerksofDate}>
           Submit match
         </button>
       </div>
