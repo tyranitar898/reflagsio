@@ -227,7 +227,9 @@ function GameControl(props) {
       <div>
         <h1>Your ideal match for {props.game.curSingle}</h1>
         {matchCards}
-        <button onClick={sendPerksofDate}>Submit match</button>
+        <button className="starterButtons" onClick={sendPerksofDate}>
+          Submit match
+        </button>
       </div>
     </div>
   );

@@ -44,18 +44,23 @@
 #gameTitleHeader {
   text-align: center;
   border-bottom: thin solid black;
+  width: 80%;
+  margin: 0 auto;
 }
 
 #starterButtonsDiv {
   margin-top: 3%;
   padding-bottom: 3%;
   border-bottom: thin solid black;
+  margin: 0 auto;
+  width: 80%;
 }
 
 button.starterButtons {
   background: lightgrey;
   font-size: 24px;
   border-radius: 0.25rem;
+  margin-top: 1%;
   margin-left: 2%;
   vertical-align: top;
   width: 30%;
@@ -114,6 +119,7 @@ label {
 }
 
 input {
+  margin-top: 1%;
   background: #eee;
   border: 1;
   height: 78px;
@@ -127,6 +133,7 @@ input {
 
 button.cards-perk,
 button.cards-rf {
+  font-size: 22px;
   vertical-align: top;
   background: white;
   width: 20%;
