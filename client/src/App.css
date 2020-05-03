@@ -36,18 +36,51 @@
     transform: rotate(360deg);
   }
 }
-body {
-  margin-left: 20px;
+#builtByHeader {
+  text-align: center;
+  color: #555;
 }
 
-#starterButtons {
-  border: 0px solid black;
+#gameTitleHeader {
+  text-align: center;
+  border-bottom: thin solid black;
 }
 
-#chat-window {
-  height: 400px;
-  overflow: auto;
-  background: #f9f9f9;
+#starterButtonsDiv {
+  margin-top: 3%;
+  padding-bottom: 3%;
+  border-bottom: thin solid black;
+}
+
+button.starterButtons {
+  background: lightgrey;
+  font-size: 24px;
+  border-radius: 0.25rem;
+  margin-left: 2%;
+  vertical-align: top;
+  width: 30%;
+  height: 120px;
+  margin-bottom: 5%;
+}
+
+button.backButtons {
+  background: lightgrey;
+  font-size: 24px;
+  border-radius: 0.25rem;
+  margin-left: 35%;
+  margin-right: 35%;
+  vertical-align: top;
+  width: 30%;
+  height: 120px;
+}
+
+#backButtonDiv {
+  align-items: center;
+  justify-content: center;
+}
+
+button.starterButtons:hover {
+  background: grey;
 }
 
 #output p {
@@ -81,23 +114,14 @@ label {
 }
 
 input {
-  padding: 10px 20px;
   background: #eee;
   border: 1;
   height: 78px;
   background: #fff;
   border-bottom: 1px solid #eee;
   font-family: Nunito;
-  font-size: 20px;
-  width: 40%;
-}
-
-button {
-  vertical-align: top;
-  background: white;
-  color: black;
-  font-size: 18px;
-  width: 30%;
+  font-size: 28px;
+  width: 60%;
   height: 120px;
 }
 

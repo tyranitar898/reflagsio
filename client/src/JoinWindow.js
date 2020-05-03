@@ -38,7 +38,11 @@ class JoinWindow extends React.Component {
             onChange={this.handleChange}
           />
 
-          <button onClick={this.sendUserInfo} id="createButton">
+          <button
+            className="starterButtons"
+            onClick={this.sendUserInfo}
+            id="createButton"
+          >
             Join
           </button>
         </div>

@@ -53,14 +53,26 @@ class StartControl extends React.Component {
     let nextPage = this.state.nextPage;
     let backButton;
     let startButtons = (
-      <div id="starterButtons">
-        <button name="create" onClick={this.handleMenuButtonClick}>
+      <div id="starterButtonsDiv">
+        <button
+          name="create"
+          className="starterButtons"
+          onClick={this.handleMenuButtonClick}
+        >
           Create
         </button>
-        <button name="join" onClick={this.handleMenuButtonClick}>
+        <button
+          name="join"
+          className="starterButtons"
+          onClick={this.handleMenuButtonClick}
+        >
           Join
         </button>
-        <button name="howTo" onClick={this.handleMenuButtonClick}>
+        <button
+          name="howTo"
+          className="starterButtons"
+          onClick={this.handleMenuButtonClick}
+        >
           How To Play
         </button>
       </div>
@@ -72,21 +84,30 @@ class StartControl extends React.Component {
       startButtons = <div></div>;
       backButton = <div></div>;
       if (this.props.isHost) {
-        backButton = <button onClick={this.handleStartGame}>Start Game</button>;
+        backButton = (
+          <button className="backButtons" onClick={this.handleStartGame}>
+            Start Game
+          </button>
+        );
       }
 
       gameLobby = <GameLobby game={this.props.game} />;
     } else {
       //no game
-      backButton = (
-        <button name="back" onClick={this.handleMenuButtonClick}>
-          Back
-        </button>
-      );
+
       gameLobby = <div></div>;
       if (nextPage === "start") {
         nextWindow = <div />;
       } else {
+        backButton = (
+          <button
+            name="back"
+            className="backButtons"
+            onClick={this.handleMenuButtonClick}
+          >
+            Back
+          </button>
+        );
         startButtons = <div />;
         if (nextPage === "create") {
           nextWindow = (
@@ -108,10 +129,16 @@ class StartControl extends React.Component {
 
     return (
       <div>
-        {startButtons}
-        {nextWindow}
-        {gameLobby}
-        {backButton}
+        <div id="gameTitleHeader">
+          <h1>Red Flags &#128681;</h1>
+        </div>
+        <div>
+          {startButtons}
+          {nextWindow}
+          {gameLobby}
+          <div id="backButtonDiv">{backButton}</div>
+          <h2 id="builtByHeader">Built by Ryan Chang</h2>
+        </div>
       </div>
     );
   }
