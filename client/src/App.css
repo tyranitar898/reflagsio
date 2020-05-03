@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+h1,
+h2 {
+  font-weight: bolder;
+}
+
+body {
+  font-family: inherit;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -94,6 +103,7 @@ button.backButtons {
   vertical-align: top;
   width: 30%;
   height: 120px;
+  margin-bottom: 5%;
 }
 
 #backButtonDiv {
@@ -160,7 +170,7 @@ input {
   height: 78px;
   background: #fff;
   border-bottom: 1px solid #eee;
-  font-family: Nunito;
+  font-family: inherit;
   font-size: 28px;
   width: 60%;
   height: 120px;
