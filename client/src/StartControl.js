@@ -2,6 +2,7 @@ import React from "react";
 import CreateWindow from "./CreateWindow";
 import JoinWindow from "./JoinWindow";
 import GameLobby from "./GameLobby";
+import HowTo from "./HowTo";
 class StartControl extends React.Component {
   constructor(props) {
     super(props);
@@ -39,6 +40,8 @@ class StartControl extends React.Component {
       value = "join";
     } else if (targetName === "back") {
       value = "start";
+    } else if (targetName === "howTo") {
+      value = "howTo";
     }
 
     this.setState((state) => ({
@@ -47,21 +50,19 @@ class StartControl extends React.Component {
   };
 
   render() {
-    var nextPage = this.state.nextPage;
-    let backButton = (
-      <button name="back" onClick={this.handleMenuButtonClick}>
-        Back
-      </button>
-    );
+    let nextPage = this.state.nextPage;
+    let backButton;
     let startButtons = (
-      <div>
+      <div id="starterButtons">
         <button name="create" onClick={this.handleMenuButtonClick}>
           Create
         </button>
         <button name="join" onClick={this.handleMenuButtonClick}>
           Join
         </button>
-        <button>How To Play</button>
+        <button name="howTo" onClick={this.handleMenuButtonClick}>
+          How To Play
+        </button>
       </div>
     );
     let nextWindow;
@@ -77,6 +78,11 @@ class StartControl extends React.Component {
       gameLobby = <GameLobby game={this.props.game} />;
     } else {
       //no game
+      backButton = (
+        <button name="back" onClick={this.handleMenuButtonClick}>
+          Back
+        </button>
+      );
       gameLobby = <div></div>;
       if (nextPage === "start") {
         nextWindow = <div />;
@@ -91,9 +97,11 @@ class StartControl extends React.Component {
               />
             </div>
           );
-        }
-        if (nextPage === "join") {
+        } else if (nextPage === "join") {
           nextWindow = <JoinWindow pCallBack={this.callbackFunction} />;
+        } else if (nextPage === "howTo") {
+          nextWindow = <HowTo />;
+        } else {
         }
       }
     }

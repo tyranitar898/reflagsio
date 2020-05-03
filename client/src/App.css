@@ -40,18 +40,8 @@ body {
   margin-left: 20px;
 }
 
-h2 {
-  font-size: 18px;
-  padding: 10px 20px;
-  color: #575ed8;
-}
-
-#mario-chat {
-  max-width: 600px;
-  margin: 30px auto;
-  border: 1px solid #ddd;
-  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.05);
-  border-radius: 2px;
+#starterButtons {
+  border: 0px solid black;
 }
 
 #chat-window {
