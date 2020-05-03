@@ -12,8 +12,10 @@ function GameLobby(props) {
   ));
   return (
     <div>
-      <h1>Welcome to Red flags game lobby: {props.game.code}</h1>
-      <h1>Waiting for others to join...</h1>
+      <h1 id="GameLobby">
+        Welcome to Red flags game lobby: <strong>{props.game.code}</strong>
+      </h1>
+      <h1>Waiting for others to join... (only the host can start the game)</h1>
       <ul>{listItems}</ul>
     </div>
   );

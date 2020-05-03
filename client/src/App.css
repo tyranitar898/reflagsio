@@ -45,6 +45,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
 #HowToDiv {
   text-align: center;
 }
@@ -53,8 +54,14 @@ body {
   list-style-type: none;
 }
 
+#builtByDiv {
+  width: 80%;
+  margin: 0 auto;
+  border-top: thin solid black;
+}
 #StartLobby {
-  margin-left: 5%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 #checkOutThis {
@@ -77,7 +84,7 @@ body {
 #starterButtonsDiv {
   margin-top: 3%;
   padding-bottom: 3%;
-  border-bottom: thin solid black;
+
   margin: 0 auto;
   width: 80%;
 }
@@ -142,7 +149,7 @@ label {
   position: fixed;
   top: 0;
   left: 85%;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 #GameControl {
@@ -153,10 +160,12 @@ label {
   text-align: center;
 }
 
-#GameControlHeader em {
+#GameControlHeader strong,
+#GameLobby strong {
   color: white;
   background-color: grey;
   border-radius: 5px;
+  padding: 0.5%;
 }
 
 #name {
@@ -183,10 +192,10 @@ button.cards-rf {
   font-size: 18px;
   vertical-align: top;
   background: white;
-  width: 18%;
+  width: 16%;
   height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   margin: 1%;
 }
 
@@ -194,10 +203,10 @@ button.cards-perk:hover {
   font-size: 18px;
   vertical-align: top;
   background: green;
-  width: 18%;
+  width: 16%;
   height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   margin: 1%;
 }
 
@@ -205,10 +214,11 @@ button.cards-perk-clicked {
   font-size: 18px;
   vertical-align: top;
   background: green;
-  width: 18%;
+  color: white;
+  width: 16%;
   height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   margin: 1%;
 }
 
@@ -216,10 +226,10 @@ button.cards-rf:hover {
   font-size: 18px;
   vertical-align: top;
   background: red;
-  width: 18%;
+  width: 16%;
   height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   margin: 1%;
 }
 
@@ -227,10 +237,11 @@ button.cards-rf-clicked {
   font-size: 18px;
   vertical-align: top;
   background: red;
-  width: 18%;
+  color: white;
+  width: 16%;
   height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   margin: 1%;
 }
 

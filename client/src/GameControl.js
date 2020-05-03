@@ -207,7 +207,7 @@ function GameControl(props) {
         </h1>
         {single}
         <h1>
-          Red Flag game code: <em>{props.game.code}</em>
+          Red Flag game code: <strong>{props.game.code}</strong>
         </h1>
       </div>
       <div id="gameRoomInfo">
@@ -215,18 +215,18 @@ function GameControl(props) {
         {playerList}
       </div>
       <div>
-        <h1>Matches for {props.game.curSingle}</h1>
+        <h1>Matches for {props.game.curSingle} &#11015;</h1>
         {datesList}
       </div>
       <div>
-        <h1>Your Perks&#11088; (Select 2 and submit)</h1>
+        <h1>Your Perks&#11088; (Select 2 and click the submit button below)</h1>
         {yourPerks}
       </div>
       <div>
         <h1>
           Your Red Flags &#128681;
           <br />
-          (Select 1 and select date you want to ruin)
+          (Select 1 and select the date you want to ruin)
         </h1>
         {yourRfs}
       </div>

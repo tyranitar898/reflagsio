@@ -347,17 +347,23 @@ class Game {
       var perksARR = [];
       var redflagsARR = [];
 
+      var posHolder = [];
       for (var j = 0; j < PERKPERHAND; j++) {
-        var randPos1 = Math.floor(Math.random() * this.perks.length);
-        //need [0] cuz splice returns an array of the one element popped
-        //also shoudl tihnk abotu handling the empty array return case
-        //perksARR.push(this.perks.splice(randPos, 1)[0]);
-        perksARR.push(this.perks[randPos1]);
+        var randPos;
+        do {
+          randPos = Math.floor(Math.random() * this.perks.length);
+        } while (posHolder.includes(randPos));
+        posHolder.push(randPos);
+        perksARR.push(this.perks[randPos]);
       }
+      posHolder = [];
       for (var k = 0; k < RFPERHAND; k++) {
-        var randPos2 = Math.floor(Math.random() * this.redFlags.length);
-        //redflagsARR.push(this.redFlags.splice(randPos, 1)[0]);
-        redflagsARR.push(this.redFlags[randPos2]);
+        var randPos;
+        do {
+          randPos = Math.floor(Math.random() * this.redFlags.length);
+        } while (posHolder.includes(randPos));
+        posHolder.push(randPos);
+        redflagsARR.push(this.redFlags[randPos]);
       }
       var data = {
         name: this.players[i].name,

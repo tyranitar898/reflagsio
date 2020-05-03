@@ -130,13 +130,15 @@ class StartControl extends React.Component {
     return (
       <div>
         <div id="gameTitleHeader">
-          <h1>Red Flags &#128681;</h1>
+          <h1>&nbsp;Red Flags &#128681;</h1>
         </div>
         <div id="StartLobby">
           {startButtons}
           {nextWindow}
           {gameLobby}
           <div id="backButtonDiv">{backButton}</div>
+        </div>
+        <div id="builtByDiv">
           <h2 id="builtByHeader">Built by Ryan Chang</h2>
           <h2 id="checkOutThis">
             Also, checkout this game my friend Brandon made&nbsp;
