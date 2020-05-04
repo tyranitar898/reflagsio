@@ -215,7 +215,7 @@ function GameControl(props) {
         {playerList}
       </div>
       <div>
-        <h1>Matches for {props.game.curSingle} &#11015;</h1>
+        <h1>Dates for {props.game.curSingle} &#11015;</h1>
         {datesList}
       </div>
       <div>

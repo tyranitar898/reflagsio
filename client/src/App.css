@@ -199,6 +199,17 @@ button.cards-rf {
   margin: 1%;
 }
 
+button.cards-dates:hover {
+  font-size: 18px;
+  vertical-align: top;
+  background: yellow;
+  width: 16%;
+  height: 240px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 1%;
+}
+
 button.cards-perk:hover {
   font-size: 18px;
   vertical-align: top;
@@ -214,7 +225,7 @@ button.cards-perk-clicked {
   font-size: 18px;
   vertical-align: top;
   background: green;
-  color: white;
+
   width: 16%;
   height: 240px;
   border-radius: 5px;
@@ -237,7 +248,7 @@ button.cards-rf-clicked {
   font-size: 18px;
   vertical-align: top;
   background: red;
-  color: white;
+
   width: 16%;
   height: 240px;
   border-radius: 5px;
