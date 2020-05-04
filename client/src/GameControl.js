@@ -54,6 +54,7 @@ function GameControl(props) {
   var rfs = props.hand.redflags;
   var dates = game.dates;
   let single = null;
+  let matchHelperText = null;
   let isCurSingle = false;
   const players = game.players;
   console.log(game);
@@ -66,6 +67,7 @@ function GameControl(props) {
         for you!)
       </p>
     );
+    matchHelperText = "";
   } else {
     single = (
       <p>
@@ -73,6 +75,7 @@ function GameControl(props) {
         players are making dates for them)
       </p>
     );
+    matchHelperText = "";
   }
   if (game.turn !== curTurn) {
     setTurn(game.turn);
@@ -215,7 +218,9 @@ function GameControl(props) {
         {playerList}
       </div>
       <div>
-        <h1>Dates for {props.game.curSingle} &#11015;</h1>
+        <h1>
+          Dates for {props.game.curSingle} {matchHelperText}&#11015;
+        </h1>
         {datesList}
       </div>
       <div>

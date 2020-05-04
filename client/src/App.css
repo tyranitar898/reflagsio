@@ -184,7 +184,6 @@ input {
   width: 60%;
   height: 120px;
 }
-
 button.cards-dates-clicked,
 button.cards-dates,
 button.cards-perk,
@@ -198,7 +197,7 @@ button.cards-rf {
   padding: 5px;
   margin: 1%;
 }
-
+button.cards-dates-clicked:hover,
 button.cards-dates:hover {
   font-size: 18px;
   vertical-align: top;
