@@ -83,7 +83,7 @@ io.on("connection", function (socket) {
       return;
     }
     game.isActive = true;
-    //console.log("(Server): " + gameCode + " has started");
+    console.log("(Server): " + gameCode + " has started");
     player = game.getPlayer(name);
     game.updateHands();
 
@@ -137,7 +137,7 @@ io.on("connection", function (socket) {
     }
 
     console.log("(Server): " + socket.id + " disconnected w/ reason" + reason);
-    console.log(games);
+    //console.log(games);
   });
 });
 
