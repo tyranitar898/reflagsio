@@ -89,6 +89,22 @@ body {
   width: 80%;
 }
 
+#submitYourOwn {
+  margin-left: 2%;
+  text-align: center;
+}
+#submitYourOwn a {
+  background-color: lightgray;
+  text-decoration: none;
+  padding: 1%;
+  border-radius: 0.25rem;
+  color: black;
+}
+#submitYourOwn a:hover {
+  background-color: grey;
+  text-decoration: none;
+}
+
 button.starterButtons {
   background: lightgrey;
   font-size: 24px;

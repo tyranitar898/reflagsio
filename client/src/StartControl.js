@@ -75,6 +75,11 @@ class StartControl extends React.Component {
         >
           How To Play
         </button>
+        <div id="submitYourOwn">
+          <a href="https://docs.google.com/document/d/15bfxmx8IKlcLV3mxDfG7BGT8_s6Fs7vCE9WmP4pCRDQ/edit?usp=sharing">
+            Feel free to submit Red flags or Perks you think are funny here
+          </a>
+        </div>
       </div>
     );
     let nextWindow;
