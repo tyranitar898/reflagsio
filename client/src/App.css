@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+h1,
+h2 {
+  font-weight: bolder;
+}
+
+body {
+  font-family: inherit;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -36,28 +45,97 @@
     transform: rotate(360deg);
   }
 }
-body {
-  margin-left: 20px;
+
+#HowToDiv {
+  text-align: center;
 }
 
-h2 {
-  font-size: 18px;
-  padding: 10px 20px;
-  color: #575ed8;
+#HowToDiv ul {
+  list-style-type: none;
 }
 
-#mario-chat {
-  max-width: 600px;
-  margin: 30px auto;
-  border: 1px solid #ddd;
-  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.05);
-  border-radius: 2px;
+#builtByDiv {
+  width: 80%;
+  margin: 0 auto;
+  border-top: thin solid black;
+}
+#StartLobby {
+  width: 80%;
+  margin: 0 auto;
 }
 
-#chat-window {
-  height: 400px;
-  overflow: auto;
-  background: #f9f9f9;
+#checkOutThis {
+  text-align: center;
+  color: lightblue;
+}
+
+#builtByHeader {
+  text-align: center;
+  color: #555;
+}
+
+#gameTitleHeader {
+  text-align: center;
+  border-bottom: thin solid black;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#starterButtonsDiv {
+  margin-top: 3%;
+  padding-bottom: 3%;
+
+  margin: 0 auto;
+  width: 80%;
+}
+
+#submitYourOwn {
+  margin-left: 2%;
+  text-align: center;
+}
+#submitYourOwn a {
+  background-color: lightgray;
+  text-decoration: none;
+  padding: 1%;
+  border-radius: 0.25rem;
+  color: black;
+}
+#submitYourOwn a:hover {
+  background-color: grey;
+  text-decoration: none;
+}
+
+button.starterButtons {
+  background: lightgrey;
+  font-size: 24px;
+  border-radius: 0.25rem;
+  margin-top: 1%;
+  margin-left: 2%;
+  vertical-align: top;
+  width: 30%;
+  height: 120px;
+  margin-bottom: 5%;
+}
+
+button.backButtons {
+  background: lightgrey;
+  font-size: 24px;
+  border-radius: 0.25rem;
+  margin-left: 35%;
+  margin-right: 35%;
+  vertical-align: top;
+  width: 30%;
+  height: 120px;
+  margin-bottom: 5%;
+}
+
+#backButtonDiv {
+  align-items: center;
+  justify-content: center;
+}
+
+button.starterButtons:hover {
+  background: grey;
 }
 
 #output p {
@@ -87,67 +165,110 @@ label {
   position: fixed;
   top: 0;
   left: 85%;
-  font-size: 12px;
+  font-size: 14px;
+}
+
+#GameControl {
+  margin-left: 5%;
+}
+
+#GameControlHeader {
+  text-align: center;
+}
+
+#GameControlHeader strong,
+#GameLobby strong {
+  color: white;
+  background-color: grey;
+  border-radius: 5px;
+  padding: 0.5%;
+}
+
+#name {
+  width: 90%;
 }
 
 input {
-  padding: 10px 20px;
+  margin-top: 1%;
   background: #eee;
   border: 1;
   height: 78px;
   background: #fff;
   border-bottom: 1px solid #eee;
-  font-family: Nunito;
-  font-size: 20px;
-  width: 40%;
-}
-
-button {
-  vertical-align: top;
-  background: white;
-  color: black;
-  font-size: 18px;
-  width: 30%;
+  font-family: inherit;
+  font-size: 28px;
+  width: 60%;
   height: 120px;
 }
-
+button.cards-dates-clicked,
+button.cards-dates,
 button.cards-perk,
 button.cards-rf {
+  font-size: 18px;
   vertical-align: top;
   background: white;
-  width: 20%;
-  height: 200px;
+  width: 16%;
+  height: 240px;
   border-radius: 5px;
-  padding: 10px;
-  margin: 2px;
+  padding: 5px;
+  margin: 1%;
+}
+button.cards-dates-clicked:hover,
+button.cards-dates:hover {
+  font-size: 18px;
+  vertical-align: top;
+  background: yellow;
+  width: 16%;
+  height: 240px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 1%;
 }
 
 button.cards-perk:hover {
+  font-size: 18px;
   vertical-align: top;
   background: green;
+  width: 16%;
+  height: 240px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 1%;
 }
 
 button.cards-perk-clicked {
+  font-size: 18px;
   vertical-align: top;
   background: green;
-  width: 20%;
-  height: 200px;
+
+  width: 16%;
+  height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
+  margin: 1%;
 }
 
 button.cards-rf:hover {
+  font-size: 18px;
   vertical-align: top;
   background: red;
+  width: 16%;
+  height: 240px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 1%;
 }
 
 button.cards-rf-clicked {
+  font-size: 18px;
   vertical-align: top;
   background: red;
-  width: 20%;
-  height: 200px;
+
+  width: 16%;
+  height: 240px;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
+  margin: 1%;
 }
 
 li#playerActive {

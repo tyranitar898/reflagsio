@@ -5,10 +5,7 @@ const path = require("path");
 const Game = require("./app/game");
 const Player = require("./app/player");
 
-//testing game room.
-var tester = new Player("tester", true, 1);
-var testGame = new Game("aaaa", tester);
-var games = [testGame];
+var games = [];
 
 //App setup
 const app = express();
@@ -16,8 +13,8 @@ const app = express();
 //RedFlags server vars
 var server = require("http").Server(app);
 var io = require("socket.io")(server, {
-  pingInterval: 10000,
-  pingTimeout: 30000,
+  pingInterval: 20000,
+  pingTimeout: 60000,
 });
 
 const port = process.env.PORT || 8000;
@@ -58,13 +55,19 @@ io.on("connection", function (socket) {
     gameCode = data.roomCode;
 
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
 
     if (game) {
       if (game.joinPlayer(player)) {
         console.log(
           "(Server): " + player.name + " joined game " + game.getCode()
         );
+<<<<<<< HEAD
         console.log("(Server): " + player.name + " joined a game");
+=======
+>>>>>>> babcae6c2ea68b6e34e9aa5e79eb3d2421365b92
 
         socket.join(game.getCode());
         io.to(game.getCode()).emit("joinGame", game);
@@ -73,15 +76,17 @@ io.on("connection", function (socket) {
         //should tell them
       }
     } else {
-      console.log("(Server): Couldnt find game");
+      //console.log("(Server): Couldnt find game");
       socket.emit("joinError", {});
     }
   });
 
   socket.on("startGame", (gameCode, name) => {
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
     game.isActive = true;
-
     console.log("(Server): " + gameCode + " has started");
     player = game.getPlayer(name);
     game.updateHands();
@@ -91,30 +96,81 @@ io.on("connection", function (socket) {
 
   socket.on("sendMatch", (gameCode, playerName, cards) => {
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
     game.addDate(playerName, cards);
-
-    console.log(game);
+    //console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
 
   socket.on("roundOver", (gameCode, roundWinnerName) => {
     game = findGame(gameCode);
+    if (game === undefined && game === null) {
+      return;
+    }
     game.endRound(roundWinnerName);
     game.updateHands();
-    console.log(game);
+    //console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
+<<<<<<< HEAD
 
   socket.on("disconnect", (reason) => {
     if (game !== null) {
-      game.disconnectPlayer(name);
-      socket.join(game.getCode());
+=======
+  //TOOD: add game=== null or undefined cheks...
+  socket.on(
+    "attachRFtoMatch",
+    (RFtoBeAttached, gameCode, dateCreatorStr, dateRuinerStr) => {
+      game = findGame(gameCode);
+      if (game === undefined && game === null) {
+        return;
+      }
+      game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached, dateRuinerStr);
+      //console.log(game);
       io.to(game.getCode()).emit("joinGame", game);
+    }
+  );
+
+  socket.on("disconnect", (reason) => {
+    if (game !== undefined && game !== null) {
+>>>>>>> babcae6c2ea68b6e34e9aa5e79eb3d2421365b92
+      game.disconnectPlayer(name);
+
+      if (!endGame(game)) {
+        socket.join(game.getCode());
+        io.to(game.getCode()).emit("joinGame", game);
+      } else {
+        console.log("game ended");
+      }
     }
 
     console.log("(Server): " + socket.id + " disconnected w/ reason" + reason);
+    //console.log(games);
   });
 });
+
+//tells u if everyone disconnected. if so remove it from list of games on server
+function endGame(game) {
+  var numDisconnectedPlayers = 0;
+  for (var i = 0; i < game.players.length; i++) {
+    if (!game.players[i].active) {
+      console.log(game.players[i]);
+      numDisconnectedPlayers += 1;
+    }
+  }
+
+  if (numDisconnectedPlayers === game.players.length) {
+    for (i = 0; i < games.length; i++) {
+      if (games[i].getCode() === game.getCode()) {
+        games.splice(i, 1);
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
 function findGame(gameCode) {
   for (i = 0; i < games.length; i++) {

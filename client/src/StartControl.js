@@ -2,6 +2,7 @@ import React from "react";
 import CreateWindow from "./CreateWindow";
 import JoinWindow from "./JoinWindow";
 import GameLobby from "./GameLobby";
+import HowTo from "./HowTo";
 class StartControl extends React.Component {
   constructor(props) {
     super(props);
@@ -39,6 +40,8 @@ class StartControl extends React.Component {
       value = "join";
     } else if (targetName === "back") {
       value = "start";
+    } else if (targetName === "howTo") {
+      value = "howTo";
     }
 
     this.setState((state) => ({
@@ -47,21 +50,36 @@ class StartControl extends React.Component {
   };
 
   render() {
-    var nextPage = this.state.nextPage;
-    let backButton = (
-      <button name="back" onClick={this.handleMenuButtonClick}>
-        Back
-      </button>
-    );
+    let nextPage = this.state.nextPage;
+    let backButton;
     let startButtons = (
-      <div>
-        <button name="create" onClick={this.handleMenuButtonClick}>
+      <div id="starterButtonsDiv">
+        <button
+          name="create"
+          className="starterButtons"
+          onClick={this.handleMenuButtonClick}
+        >
           Create
         </button>
-        <button name="join" onClick={this.handleMenuButtonClick}>
+        <button
+          name="join"
+          className="starterButtons"
+          onClick={this.handleMenuButtonClick}
+        >
           Join
         </button>
-        <button>How To Play</button>
+        <button
+          name="howTo"
+          className="starterButtons"
+          onClick={this.handleMenuButtonClick}
+        >
+          How To Play
+        </button>
+        <div id="submitYourOwn">
+          <a href="https://docs.google.com/document/d/15bfxmx8IKlcLV3mxDfG7BGT8_s6Fs7vCE9WmP4pCRDQ/edit?usp=sharing">
+            Feel free to submit Red flags or Perks you think are funny here
+          </a>
+        </div>
       </div>
     );
     let nextWindow;
@@ -71,16 +89,30 @@ class StartControl extends React.Component {
       startButtons = <div></div>;
       backButton = <div></div>;
       if (this.props.isHost) {
-        backButton = <button onClick={this.handleStartGame}>Start Game</button>;
+        backButton = (
+          <button className="backButtons" onClick={this.handleStartGame}>
+            Start Game
+          </button>
+        );
       }
 
       gameLobby = <GameLobby game={this.props.game} />;
     } else {
       //no game
+
       gameLobby = <div></div>;
       if (nextPage === "start") {
         nextWindow = <div />;
       } else {
+        backButton = (
+          <button
+            name="back"
+            className="backButtons"
+            onClick={this.handleMenuButtonClick}
+          >
+            Back
+          </button>
+        );
         startButtons = <div />;
         if (nextPage === "create") {
           nextWindow = (
@@ -91,19 +123,33 @@ class StartControl extends React.Component {
               />
             </div>
           );
-        }
-        if (nextPage === "join") {
+        } else if (nextPage === "join") {
           nextWindow = <JoinWindow pCallBack={this.callbackFunction} />;
+        } else if (nextPage === "howTo") {
+          nextWindow = <HowTo />;
+        } else {
         }
       }
     }
 
     return (
       <div>
-        {startButtons}
-        {nextWindow}
-        {gameLobby}
-        {backButton}
+        <div id="gameTitleHeader">
+          <h1>&nbsp;Red Flags &#128681;</h1>
+        </div>
+        <div id="StartLobby">
+          {startButtons}
+          {nextWindow}
+          {gameLobby}
+          <div id="backButtonDiv">{backButton}</div>
+        </div>
+        <div id="builtByDiv">
+          <h2 id="builtByHeader">Built by Ryan Chang</h2>
+          <h2 id="checkOutThis">
+            Also, checkout this game my friend Brandon made&nbsp;
+            <a href="https://pseudonyms.brandon-wang.me/">here</a>
+          </h2>
+        </div>
       </div>
     );
   }

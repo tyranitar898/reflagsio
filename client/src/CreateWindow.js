@@ -20,10 +20,12 @@ class CreateWindow extends React.Component {
           <input
             id="hostName"
             type="text"
-            placeholder="Enter your name (must have >2 and <20 characters)"
+            placeholder="Enter your name"
             onChange={this.handleChange}
           />
-          <button onClick={this.sendUserInfo}>Create</button>
+          <button className="starterButtons" onClick={this.sendUserInfo}>
+            Create
+          </button>
         </div>
       </div>
     );
