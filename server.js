@@ -65,6 +65,7 @@ io.on("connection", function (socket) {
           "(Server): " + player.name + " joined game " + game.getCode()
         );
         console.log("(Server): " + player.name + " joined a game");
+
         socket.join(game.getCode());
         io.to(game.getCode()).emit("joinGame", game);
       } else {
@@ -104,18 +105,8 @@ io.on("connection", function (socket) {
     io.to(game.getCode()).emit("joinGame", game);
   });
 
-  socket.on(
-    "attachRFtoMatch",
-    (RFtoBeAttached, gameCode, dateCreatorStr, dateRuinerStr) => {
-      game = findGame(gameCode);
-      game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached, dateRuinerStr);
-      console.log(game);
-      io.to(game.getCode()).emit("joinGame", game);
-    }
-  );
-
   socket.on("disconnect", (reason) => {
-    if (game !== undefined) {
+    if (game !== null) {
       game.disconnectPlayer(name);
       socket.join(game.getCode());
       io.to(game.getCode()).emit("joinGame", game);
