@@ -64,10 +64,6 @@ io.on("connection", function (socket) {
         console.log(
           "(Server): " + player.name + " joined game " + game.getCode()
         );
-<<<<<<< HEAD
-        console.log("(Server): " + player.name + " joined a game");
-=======
->>>>>>> babcae6c2ea68b6e34e9aa5e79eb3d2421365b92
 
         socket.join(game.getCode());
         io.to(game.getCode()).emit("joinGame", game);
@@ -114,11 +110,6 @@ io.on("connection", function (socket) {
     //console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
-<<<<<<< HEAD
-
-  socket.on("disconnect", (reason) => {
-    if (game !== null) {
-=======
   //TOOD: add game=== null or undefined cheks...
   socket.on(
     "attachRFtoMatch",
@@ -135,7 +126,6 @@ io.on("connection", function (socket) {
 
   socket.on("disconnect", (reason) => {
     if (game !== undefined && game !== null) {
->>>>>>> babcae6c2ea68b6e34e9aa5e79eb3d2421365b92
       game.disconnectPlayer(name);
 
       if (!endGame(game)) {

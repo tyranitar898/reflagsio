@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 
 const NUMPERKSSUBMIT = 2;
+const NUMRFSUBMIT = 1;
 
 function PlayerItem(props) {
   // Correct! There is no need to specify the key here:
@@ -105,7 +106,7 @@ function GameControl(props) {
         //tell them not everyone submitted a match
       }
     } else {
-      if (selectedRFs.length === 1) {
+      if (selectedRFs.length === NUMRFSUBMIT) {
         curSocket.emit(
           "attachRFtoMatch",
           selectedRFs[0],

@@ -49,6 +49,12 @@ body {
 #HowToDiv {
   text-align: center;
 }
+#HowToDiv h1,
+#HowToDiv h2,
+#HowToDiv p {
+  margin-block-start: 0px;
+  margin-inline-start: 0px;
+}
 
 #HowToDiv ul {
   list-style-type: none;
@@ -134,6 +140,10 @@ button.backButtons {
   justify-content: center;
 }
 
+button.backButtons:hover {
+  background: grey;
+}
+
 button.starterButtons:hover {
   background: grey;
 }
@@ -199,6 +209,7 @@ input {
   font-size: 28px;
   width: 60%;
   height: 120px;
+  text-align: center;
 }
 button.cards-dates-clicked,
 button.cards-dates,
@@ -213,6 +224,7 @@ button.cards-rf {
   padding: 5px;
   margin: 1%;
 }
+
 button.cards-dates-clicked:hover,
 button.cards-dates:hover {
   font-size: 18px;
