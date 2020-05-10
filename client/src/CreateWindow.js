@@ -5,7 +5,7 @@ class CreateWindow extends React.Component {
     super(props);
     this.state = { socket: this.props.socket, name: "", roomcode: "" };
   }
-  handleChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ name: event.target.value });
   };
 
@@ -21,8 +21,9 @@ class CreateWindow extends React.Component {
             id="hostName"
             type="text"
             placeholder="Enter your name"
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
           />
+
           <button className="starterButtons" onClick={this.sendUserInfo}>
             Create
           </button>
@@ -32,3 +33,16 @@ class CreateWindow extends React.Component {
   }
 }
 export default CreateWindow;
+
+/* <input
+            id=""
+            type="text"
+            placeholder="Number of perks each round"
+            onChange={this.handleInputChange}
+          />
+          <input
+            id=""
+            type="text"
+            placeholder="Number of red flags each round"
+            onChange={this.handleInputChange}
+          />*/

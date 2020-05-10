@@ -13,14 +13,6 @@ class StartControl extends React.Component {
       game: false,
     };
   }
-  //dont technicallhy need this.
-  //render is checking props( correct)
-  //child components shouldnt change based on parent's state.
-  componentWillReceiveProps(props) {
-    if (props.game !== false) {
-      this.setState({ game: props.game, roomcode: props.roomcode });
-    }
-  }
 
   callbackFunction = (name, roomcode) => {
     this.setState({ name: name, roomcode: roomcode });

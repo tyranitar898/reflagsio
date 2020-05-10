@@ -9,7 +9,7 @@ class Game {
     this.players = [host];
     this.isActive = false;
     this.perks = wordsFromFile("./wordfiles/classicPerks");
-    this.redFlags = wordsFromFile("./wordfiles/classicPerks");
+    this.redFlags = wordsFromFile("./wordfiles/classicRedFlags");
     this.turn = 1;
     this.curSingle = host.name;
 
