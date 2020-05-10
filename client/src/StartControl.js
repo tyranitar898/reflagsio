@@ -14,9 +14,9 @@ class StartControl extends React.Component {
     };
   }
 
-  callbackFunction = (name, roomcode) => {
+  sendNameRoomToParent = (name, roomcode) => {
     this.setState({ name: name, roomcode: roomcode });
-    this.props.pCallBack(name, roomcode);
+    this.props.handleNameRoom(name, roomcode);
   };
 
   handleStartGame = (event) => {
@@ -111,12 +111,17 @@ class StartControl extends React.Component {
             <div>
               <CreateWindow
                 socket={this.props.socket}
-                pCallBack={this.callbackFunction}
+                pCallBack={this.sendNameRoomToParent}
               />
             </div>
           );
         } else if (nextPage === "join") {
-          nextWindow = <JoinWindow pCallBack={this.callbackFunction} />;
+          nextWindow = (
+            <JoinWindow
+              socket={this.props.socket}
+              pCallBack={this.sendNameRoomToParent}
+            />
+          );
         } else if (nextPage === "howTo") {
           nextWindow = <HowTo />;
         } else {

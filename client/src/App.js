@@ -47,24 +47,7 @@ class App extends React.Component {
 
   recieveNameRoom = (name, roomcode) => {
     this.setState({ name: name, roomcode: roomcode });
-
-    if (roomcode === "") {
-      socket.emit("createGame", {
-        playerName: name,
-      });
-    } else {
-      console.log(roomcode);
-      socket.emit("joinGame", {
-        playerName: name,
-        roomCode: roomcode,
-      });
-    }
   };
-
-  disconnect() {
-    socket.close();
-    //handle disonnection some how change the game's player.active state
-  }
 
   render() {
     let MenuOrStart;
@@ -81,7 +64,7 @@ class App extends React.Component {
       MenuOrStart = (
         <StartControl
           pStartGame={this.recieveStart}
-          pCallBack={this.recieveNameRoom}
+          handleNameRoom={this.recieveNameRoom}
           socket={this.state.socket}
           game={this.state.game}
           roomcode={this.state.roomcode}

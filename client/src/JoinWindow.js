@@ -5,10 +5,10 @@ class JoinWindow extends React.Component {
     super(props);
     this.state = { name: "", roomCode: "" };
   }
-  handleChange = (event) => {
-    const target = event.target;
+  handleInputChange = (event) => {
+    let target = event.target;
     let value = target.value;
-    const name = target.name;
+    let name = target.name;
     if (name === "roomCode") {
       value = value.toLowerCase();
     }
@@ -17,6 +17,10 @@ class JoinWindow extends React.Component {
 
   sendUserInfo = () => {
     this.props.pCallBack(this.state.name, this.state.roomCode);
+    this.props.socket.emit("joinGame", {
+      playerName: this.state.name,
+      roomCode: this.state.roomCode,
+    });
   };
 
   render() {
@@ -28,14 +32,14 @@ class JoinWindow extends React.Component {
             type="text"
             placeholder="Enter your name"
             name="name"
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
           />
           <input
             id="roomCode"
             name="roomCode"
             type="text"
             placeholder="Enter the room code"
-            onChange={this.handleChange}
+            onChange={this.handleInputChange}
           />
 
           <button
