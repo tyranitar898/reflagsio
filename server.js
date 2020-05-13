@@ -125,7 +125,7 @@ io.on("connection", function (socket) {
   );
 
   socket.on("disconnect", (reason) => {
-    if (game !== undefined || game !== null) {
+    if (game !== undefined && game !== null) {
       game.disconnectPlayer(name);
 
       if (!endGame(game)) {
