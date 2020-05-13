@@ -55,7 +55,7 @@ io.on("connection", function (socket) {
     gameCode = data.roomCode;
 
     game = findGame(gameCode);
-    if (game === undefined && game === null) {
+    if (game === undefined || game === null) {
       return;
     }
 
@@ -79,7 +79,7 @@ io.on("connection", function (socket) {
 
   socket.on("startGame", (gameCode, name) => {
     game = findGame(gameCode);
-    if (game === undefined && game === null) {
+    if (game === undefined || game === null) {
       return;
     }
     game.isActive = true;
@@ -92,7 +92,7 @@ io.on("connection", function (socket) {
 
   socket.on("sendMatch", (gameCode, playerName, cards) => {
     game = findGame(gameCode);
-    if (game === undefined && game === null) {
+    if (game === undefined || game === null) {
       return;
     }
     game.addDate(playerName, cards);
@@ -102,7 +102,7 @@ io.on("connection", function (socket) {
 
   socket.on("roundOver", (gameCode, roundWinnerName) => {
     game = findGame(gameCode);
-    if (game === undefined && game === null) {
+    if (game === undefined || game === null) {
       return;
     }
     game.endRound(roundWinnerName);
@@ -115,7 +115,7 @@ io.on("connection", function (socket) {
     "attachRFtoMatch",
     (RFtoBeAttached, gameCode, dateCreatorStr, dateRuinerStr) => {
       game = findGame(gameCode);
-      if (game === undefined && game === null) {
+      if (game === undefined || game === null) {
         return;
       }
       game.addRedFlagToDate(dateCreatorStr, RFtoBeAttached, dateRuinerStr);
@@ -125,7 +125,7 @@ io.on("connection", function (socket) {
   );
 
   socket.on("disconnect", (reason) => {
-    if (game !== undefined && game !== null) {
+    if (game !== undefined || game !== null) {
       game.disconnectPlayer(name);
 
       if (!endGame(game)) {
