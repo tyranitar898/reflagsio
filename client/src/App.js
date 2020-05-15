@@ -4,13 +4,15 @@ import StartControl from "./StartControl";
 import GameControl from "./GameControl";
 import io from "socket.io-client";
 
-if (process.env.PORT) {
-}
+const socketiohost =
+  process.env.NODE_ENV === "development"
+    ? "localhost:8000"
+    : "redflagsio.herokuapp.com";
 console.log(process.env);
-//const socket = io("localhost:8000");
-const socket = io("https://redflagsio.herokuapp.com/");
-//Socket responses
-console.log("The value of PORT is:", process.env.PORT);
+
+const socket = io(socketiohost);
+
+console.log("The value of PORT is:", socketiohost);
 
 class App extends React.Component {
   constructor() {
