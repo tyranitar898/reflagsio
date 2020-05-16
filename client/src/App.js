@@ -12,8 +12,6 @@ console.log(process.env);
 
 const socket = io(socketiohost);
 
-console.log("The value of PORT is:", socketiohost);
-
 class App extends React.Component {
   constructor() {
     super();
