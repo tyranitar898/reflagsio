@@ -225,7 +225,9 @@ function GameControl(props) {
         {datesList}
       </div>
       <div>
-        <h1>Your Perks&#11088; (Select 2 and click the submit button below)</h1>
+        <h1>
+          Your Perks&#11088; (Select 2 and click the submit match button below)
+        </h1>
         {yourPerks}
       </div>
       <div>

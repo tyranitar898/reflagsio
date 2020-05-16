@@ -58,7 +58,7 @@ function HowTo(props) {
         imaginations allow.
       </h2>
       <div className="divider"></div>
-      <h1>Heres what the game actually looks like.</h1>
+      <h1>Here's what the game actually looks like.</h1>
       <h2>Once the game starts select two preks.</h2>
       <img src={howto1} alt="" width="80%" height="80%" />
       <h2>
