@@ -57,10 +57,30 @@ function HowTo(props) {
         That's pretty much it. The game can be as raunchy or tame as your
         imaginations allow.
       </h2>
+      <div className="divider"></div>
+      <h1>Heres what the game actually looks like.</h1>
+      <h2>Once the game starts select two preks.</h2>
       <img src={howto1} alt="" width="80%" height="80%" />
+      <h2>
+        Then submit those two perks by clicking the submit match button at the
+        bottom of the page.
+      </h2>
       <img src={howto2} alt="" width="80%" height="80%" />
+      <h2>
+        Now it'll show up at the top on the matches for the current single.
+      </h2>
       <img src={howto3} alt="" width="80%" height="80%" />
+      <h2>
+        After you see all the ponential matches, tag a redflags onto a match you
+        want to ruin.
+      </h2>
+
       <img src={howto4} alt="" width="80%" height="80%" />
+      <h2>
+        Finally when all the dates are ruined the current single will decide on
+        the best date the went to go on.
+      </h2>
+
       <img src={howto5} alt="" width="80%" height="80%" />
     </div>
   );

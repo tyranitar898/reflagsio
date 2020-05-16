@@ -33,7 +33,7 @@ body {
 #builtByDiv {
   width: 80%;
   margin: 0 auto;
-  border-top: thin solid black;
+  border-top: 2px solid black;
 }
 #StartLobby {
   width: 80%;
@@ -52,7 +52,7 @@ body {
 
 #gameTitleHeader {
   text-align: center;
-  border-bottom: thin solid black;
+  border-bottom: 2px solid black;
   width: 80%;
   margin: 0 auto;
 }
@@ -256,6 +256,11 @@ button.cards-rf-clicked {
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
+}
+
+div.divider {
+  width: 100%;
+  border-bottom: 2px solid black;
 }
 
 li#playerActive {

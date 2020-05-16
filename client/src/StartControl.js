@@ -134,6 +134,7 @@ class StartControl extends React.Component {
         <div id="gameTitleHeader">
           <h1>&nbsp;Red Flags &#128681;</h1>
         </div>
+
         <div id="StartLobby">
           {startButtons}
           {nextWindow}
