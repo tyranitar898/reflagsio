@@ -144,8 +144,8 @@ class StartControl extends React.Component {
         <div id="builtByDiv">
           <h2 id="builtByHeader">Built by Ryan Chang</h2>
           <h2 id="checkOutThis">
-            Also, checkout this game my friend Brandon made&nbsp;
-            <a href="https://pseudonyms.brandon-wang.com/">here</a>
+            Also checkout this game my friend Brandon made&nbsp;
+            <a href="https://pseudonyms.brandon-wang.me/">here</a>
           </h2>
         </div>
       </div>

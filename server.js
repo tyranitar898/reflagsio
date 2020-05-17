@@ -38,8 +38,10 @@ io.on("connection", function (socket) {
     host = new Player(data.playerName, true, socket.id);
     game = new Game(generateCode(), host);
     games.push(game);
-    console.log(
-      "(Server):" + host.name + " created a game with code : " + game.getCode()
+
+    logToServer(
+      socket.id,
+      " " + host.name + " created a game with code : " + game.getCode()
     );
 
     socket.join(game.getCode());
@@ -61,8 +63,9 @@ io.on("connection", function (socket) {
 
     if (game) {
       if (game.joinPlayer(player)) {
-        console.log(
-          "(Server): " + player.name + " joined game " + game.getCode()
+        logToServer(
+          socket.id,
+          " " + player.name + " joined game " + game.getCode()
         );
 
         socket.join(game.getCode());
@@ -82,8 +85,9 @@ io.on("connection", function (socket) {
     if (game === undefined || game === null) {
       return;
     }
+    logToServer(socket.id, gameCode + " has started game " + gameCode);
+
     game.isActive = true;
-    console.log("(Server): " + gameCode + " has started");
     player = game.getPlayer(name);
     game.updateHands();
 
@@ -96,7 +100,6 @@ io.on("connection", function (socket) {
       return;
     }
     game.addDate(playerName, cards);
-    //console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
 
@@ -107,10 +110,9 @@ io.on("connection", function (socket) {
     }
     game.endRound(roundWinnerName);
     game.updateHands();
-    //console.log(game);
     io.to(game.getCode()).emit("joinGame", game);
   });
-  //TOOD: add game=== null or undefined cheks...
+
   socket.on(
     "attachRFtoMatch",
     (RFtoBeAttached, gameCode, dateCreatorStr, dateRuinerStr) => {
@@ -132,21 +134,28 @@ io.on("connection", function (socket) {
         socket.join(game.getCode());
         io.to(game.getCode()).emit("joinGame", game);
       } else {
-        console.log("game ended");
+        logToServer(socket.id, " ended game");
       }
     }
-
-    console.log("(Server): " + socket.id + " disconnected w/ reason" + reason);
-    //console.log(games);
+    logToServer(socket.id, " disconnected with reason " + reason);
   });
 });
 
-//tells u if everyone disconnected. if so remove it from list of games on server
+function logToServer(socketid, msg) {
+  let soc = socketid || "";
+  console.log("(Server): " + soc + msg);
+}
+
+/**
+ * true if everyone disconnected.
+ * if true it will also remove it from list of games on server
+ * @param {game} object
+ * @returns {boolean}
+ */
 function endGame(game) {
   var numDisconnectedPlayers = 0;
   for (var i = 0; i < game.players.length; i++) {
     if (!game.players[i].active) {
-      console.log(game.players[i]);
       numDisconnectedPlayers += 1;
     }
   }
