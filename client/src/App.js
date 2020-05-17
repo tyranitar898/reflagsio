@@ -4,13 +4,9 @@ import StartControl from "./StartControl";
 import GameControl from "./GameControl";
 import io from "socket.io-client";
 
-const socketiohost =
-  process.env.NODE_ENV === "development"
-    ? "localhost:8000"
-    : "redflagsio.herokuapp.com";
-console.log(process.env);
-
-const socket = io(socketiohost);
+//const socket = io("http://localhost:8000");
+const socket = io("https://redflagsio.herokuapp.com/");
+//Socket responses
 
 class App extends React.Component {
   constructor() {
