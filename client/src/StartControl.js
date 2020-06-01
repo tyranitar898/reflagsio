@@ -142,7 +142,10 @@ class StartControl extends React.Component {
           <div id="backButtonDiv">{backButton}</div>
         </div>
         <div id="builtByDiv">
-          <h2 id="builtByHeader">Built by Ryan Chang</h2>
+          <h2 id="builtByHeader">
+            Built by{" "}
+            <a href="https://tyranitar898.github.io/UofT/">Ryan Chang</a>
+          </h2>
           <h2 id="checkOutThis">
             Also checkout this game my friend Brandon made&nbsp;
             <a href="https://pseudonyms.brandon-wang.com/">here</a>
