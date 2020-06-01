@@ -1,10 +1,7 @@
-const PERKPERHAND = 4;
-const RFPERHAND = 3;
-
 const wordsFromFile = require("./wordsFromFile.js");
 
 class Game {
-  constructor(code, host) {
+  constructor(code, host, perkperhand, rfperhand) {
     this.code = code;
     this.players = [host];
     this.isActive = false;
@@ -12,7 +9,8 @@ class Game {
     this.redFlags = wordsFromFile("./wordfiles/classicRedFlags");
     this.turn = 1;
     this.curSingle = host.name;
-
+    this.PERKPERHAND = perkperhand;
+    this.RFPERHAND = rfperhand;
     //at begining of every turn this.dates should be empty
     this.dates = [];
     this.hands = [];
@@ -145,7 +143,7 @@ class Game {
       var redflagsARR = [];
 
       var posHolder = [];
-      for (var j = 0; j < PERKPERHAND; j++) {
+      for (var j = 0; j < this.PERKPERHAND; j++) {
         var randPos;
         do {
           randPos = Math.floor(Math.random() * this.perks.length);
@@ -154,7 +152,7 @@ class Game {
         perksARR.push(this.perks[randPos]);
       }
       posHolder = [];
-      for (var k = 0; k < RFPERHAND; k++) {
+      for (var k = 0; k < this.RFPERHAND; k++) {
         var randPos;
         do {
           randPos = Math.floor(Math.random() * this.redFlags.length);

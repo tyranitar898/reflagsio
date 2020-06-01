@@ -36,7 +36,7 @@ io.on("connection", function (socket) {
   socket.on("createGame", (data) => {
     name = data.playerName;
     host = new Player(data.playerName, true, socket.id);
-    game = new Game(generateCode(), host);
+    game = new Game(generateCode(), host, 4, 3);
     games.push(game);
 
     logToServer(
