@@ -1,4 +1,5 @@
 import React from "react";
+import howto0 from "./HowToPics/0.png";
 import howto1 from "./HowToPics/1.png";
 import howto2 from "./HowToPics/2.png";
 import howto3 from "./HowToPics/3.png";
@@ -59,6 +60,7 @@ function HowTo(props) {
       </h2>
       <div className="divider"></div>
       <h1>Here's what the game actually looks like.</h1>
+      <img src={howto0} alt="" width="80%" height="80%" />
       <h2>Once the game starts select two preks.</h2>
       <img src={howto1} alt="" width="80%" height="80%" />
       <h2>
