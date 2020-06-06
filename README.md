@@ -1,4 +1,4 @@
-# Redflagsio
+# Redflagsio https://redflagsio.herokuapp.com/
 
 Redflagsio is a modified web app version of the popular board game [Red flags](https://store.skybound.com/products/red-flags-main-card-game?variant=11215546054). This project was built on a Node.js server that facilitates a react client front end. Communication between server and client is facilitated using [Socket.io](https://socket.io/)
 
