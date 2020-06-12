@@ -32,7 +32,7 @@ Now you can visit it at http://localhost:3000/
 
 * [Socketio](https://socket.io/) - The client server communication Framework
 * [Express](https://expressjs.com/) - The backend Web Framework
-* [React](https://reactjs.org/) - for Front End 
+* [React](https://reactjs.org/) - for frontend 
 
 ## Authors
 
