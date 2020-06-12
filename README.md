@@ -14,9 +14,10 @@ Clone proj
 git clone https://github.com/tyranitar898/redflagsio.git
 ```
 
-CD into project directory and install dependencies
+cd into project directory and install dependencies
 
 ```
+cd redflagsio
 npm install
 ```
 
@@ -30,9 +31,9 @@ Now you can visit it at http://localhost:3000/
 
 ## Built With
 
-* [Socketio](https://socket.io/) - The client server communication Framework
-* [Express](https://expressjs.com/) - The backend Web Framework
-* [React](https://reactjs.org/) - for frontend 
+* [Socketio](https://socket.io/) - Websocket library, to communicate between the client and the server.
+* [Express](https://expressjs.com/) - Web framework for Node.js, to power its web server.
+* [React](https://reactjs.org/) - for frontend.
 
 ## Authors
 
