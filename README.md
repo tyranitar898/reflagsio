@@ -4,7 +4,7 @@ Redflagsio is a modified web app version of the popular board game [Red flags](h
 
 <div align="center">
     <img src="client/src/HowToPics/0.png" alt="" width="45%"/>
-    <img src="client/src/HowToPics/1.png" alt="" width="45%"/>
+    <img src="client/src/HowToPics/5.png" alt="" width="45%"/>
 </div>
 
 ## Getting Started
