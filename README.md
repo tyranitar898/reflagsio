@@ -7,7 +7,7 @@ Redflagsio is a modified web app version of the popular board game [Red flags](h
     <img src="client/src/HowToPics/5.png" alt="" width="45%"/>
 </div>
 
-## Getting Started
+### Getting Started
 
 These instructions will get you a copy of the proejct up and running on your local machine for development and testing purposes.
 
@@ -36,9 +36,9 @@ Now you can visit it at http://localhost:3000/
 
 ## Built With
 
-* [Socketio](https://socket.io/) - Websocket library, to communicate between the client and the server.
-* [Express](https://expressjs.com/) - Web framework for Node.js, to power its web server.
-* [React](https://reactjs.org/) - for frontend.
+- [Socketio](https://socket.io/) - Websocket library, to communicate between the client and the server.
+- [Express](https://expressjs.com/) - Web framework for Node.js, to power its web server.
+- [React](https://reactjs.org/) - for frontend.
 
 ## Authors
 
