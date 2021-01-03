@@ -133,6 +133,7 @@ class StartControl extends React.Component {
       <div>
         <div id="gameTitleHeader">
           <h1>&nbsp;Red Flags &#128681;</h1>
+          <h3>Red Flags is a party game about convincing your friends to go on terrible dates.</h3>
         </div>
 
         <div id="StartLobby">

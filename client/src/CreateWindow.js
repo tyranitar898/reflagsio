@@ -7,8 +7,8 @@ class CreateWindow extends React.Component {
       socket: this.props.socket,
       name: "",
       roomcode: "",
-      optionalPerkNum: 4,
-      optionalRfNum: 3,
+      optionalPerkNum: 6,
+      optionalRfNum: 4,
     };
   }
   handleInputChange = (event) => {
@@ -39,13 +39,13 @@ class CreateWindow extends React.Component {
           />
           <input
             type="text"
-            placeholder="Enter # of perks (4 by default)"
+            placeholder="Enter # of perks (6 by default)"
             onChange={this.handleInputChange}
             name="optionalPerkNum"
           />
           <input
             type="text"
-            placeholder="Enter # of red flags (3 by default)"
+            placeholder="Enter # of red flags (4 by default)"
             onChange={this.handleInputChange}
             name="optionalRfNum"
           />

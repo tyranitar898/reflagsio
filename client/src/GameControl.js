@@ -212,8 +212,9 @@ function GameControl(props) {
           <Row>
             <Col>
               <h1>
-                Welcome {props.name} | {single}
+                Welcome {props.name}
               </h1>
+              <h1>{single}</h1>
             </Col>
           </Row>
           <h3>Round: {props.game.turn}</h3>
