@@ -36,7 +36,9 @@ io.on("connection", function (socket) {
   socket.on("createGame", (data) => {
     name = data.playerName;
     host = new Player(data.playerName, true, socket.id);
-    game = new Game(generateCode(), host, 4, 3);
+    let numPerk = data.optionalPerkNum || 4;
+    let numRf = data.optionalRfNum || 3;
+    game = new Game(generateCode(), host, numPerk, numRf);
     games.push(game);
 
     logToServer(
