@@ -41,7 +41,7 @@ function HowTo(props) {
         </li>
       </ul>
       <h2>
-        But then everyone also gets Red Flag cards like:
+        But then everyone also gets red flag cards like:
       </h2>
       <ul>
         <li>
@@ -54,7 +54,7 @@ function HowTo(props) {
           <p>Can only walk horizontally</p>
         </li>
       </ul>
-      <h2>Using one of your red flags you can now ruin one of your freinds suggested date. Now all of these perfect dates will have flaws like:</h2>
+      <h2>Using one of your red flags you can now ruin one of your freind's suggested date. Now all of these perfect dates will have flaws like:</h2>
       <ul>
         <li>
           <p>An olympic gymnast that loves video games who keeps mosquitoes as pets</p>
@@ -63,7 +63,7 @@ function HowTo(props) {
           <p>A brain surgeon who loves to cuddle but uses Crayola as make up</p>
         </li>
         <li>
-          <p>A millionaire who is humble but Can only walk horizontally</p>
+          <p>A millionaire who is humble but can only walk horizontally</p>
         </li>
       </ul>
       <h2>
@@ -98,6 +98,7 @@ function HowTo(props) {
       </h2>
 
       <img src={howto5} alt="" width="80%" height="80%" />
+      
     </div>
   );
 }

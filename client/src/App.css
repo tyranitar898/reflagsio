@@ -279,6 +279,8 @@ button.cards-rf-clicked {
 
 div.divider {
   width: 100%;
+  margin-bottom: 2%;
+  margin-top: 2%;
   border-bottom: 2px solid black;
 }
 
