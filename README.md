@@ -3,7 +3,7 @@
 Redflagsio is a modified web app version of the popular board game [Red flags](https://store.skybound.com/products/red-flags-main-card-game?variant=11215546054). This project was built on a Node.js server that serves a React front end for clients. Communication between server and client is facilitated using [Socket.io](https://socket.io/).
 
 <div align="center">
-    <img src="client/src/HowToPics/0.png" alt="" width="45%"/>
+    <img src="client/src/HowToPics/1.png" alt="" width="45%"/>
     <img src="client/src/HowToPics/5.png" alt="" width="45%"/>
 </div>
 
@@ -42,4 +42,4 @@ Now you can visit it at http://localhost:3000/
 
 ## Authors
 
-- **Ryan Chang** - _Developer_ - [Personal Website](https://tyranitar898.github.io/UofT/)
+- **Ryan Chang** - _Developer_ - [Personal Website](http://ryanchang.online/)
