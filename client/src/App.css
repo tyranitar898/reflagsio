@@ -148,7 +148,7 @@ label {
 
 #gameRoomInfo {
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 85%;
   font-size: 14px;
 }
@@ -268,4 +268,8 @@ li#playerActive {
 }
 li#playerInactive {
   color: red;
+}
+
+#bottomOfPage {
+  margin-bottom: 10%;
 }

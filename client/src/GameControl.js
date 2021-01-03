@@ -28,7 +28,6 @@ function CardButton(props) {
     className += "-clicked";
   }
 
-  // Correct! There is no need to specify the key here:
   return (
     <button
       onClick={() => {
@@ -58,24 +57,16 @@ function GameControl(props) {
   let matchHelperText = null;
   let isCurSingle = false;
   const players = game.players;
-  console.log(game);
 
   if (game.curSingle === curName) {
     isCurSingle = true;
-    single = (
-      <p>
-        You are the current single (this means other players are making dates
-        for you!)
-      </p>
-    );
+    single =
+      "You are the current single (other players are making dates for you!)";
     matchHelperText = "";
   } else {
-    single = (
-      <p>
-        {game.curSingle} is the current single <br /> (this means you and other
-        players are making dates for them)
-      </p>
-    );
+    single =
+      game.curSingle +
+      " is the current single (you and other players are making dates for them)";
     matchHelperText = "";
   }
   if (game.turn !== curTurn) {
@@ -123,6 +114,7 @@ function GameControl(props) {
   const sendPerksofDate = () => {
     if (!isCurSingle) {
       if (selectedPerks.length === NUMPERKSSUBMIT) {
+        console.log("yes");
         curSocket.emit("sendMatch", props.game.code, props.name, selectedPerks);
       } else {
         //tell them u need to pick another card
@@ -155,26 +147,41 @@ function GameControl(props) {
   };
 
   const playerList = players.map((player) => (
-    // Correct! Key should be specified inside the array.
-
     //pts beed to be restrcutured
     <PlayerItem key={player.name} player={player} game={game} />
   ));
-
-  const datesList = dates.map((date, index) => (
-    // Correct! Key should be specified inside the array.
-    <CardButton
-      className={"cards-dates"}
-      socket={curSocket}
-      gamecode={game.code}
-      key={date.dateCreator + index}
-      value={date.dateStr}
-      cardOnClick={handleDateCards}
-    />
-  ));
+  let datesList;
+  let exampleDate = "Dates will apear here";
+  if (dates === undefined || dates.length == 0) {
+    // datesList = (
+    //   <CardButton
+    //     className={"cards-dates"}
+    //     key={exampleDate}
+    //     value={exampleDate}
+    //   />
+    // );
+  } else {
+    let temp = dates.map((date, index) => (
+      <CardButton
+        className={"cards-dates"}
+        socket={curSocket}
+        gamecode={game.code}
+        key={date.dateCreator + index}
+        value={date.dateStr}
+        cardOnClick={handleDateCards}
+      />
+    ));
+    datesList = (
+      <div>
+        <h1>
+          Dates for {props.game.curSingle} {matchHelperText}&#11015;
+        </h1>
+        {temp}
+      </div>
+    );
+  }
 
   const yourPerks = perks.map((card, index) => (
-    // Correct! Key should be specified inside the array.
     <CardButton
       className={"cards-perk"}
       socket={curSocket}
@@ -187,7 +194,6 @@ function GameControl(props) {
   ));
 
   const yourRfs = rfs.map((card, index) => (
-    // Correct! Key should be specified inside the array.
     <CardButton
       className={"cards-rf"}
       socket={curSocket}
@@ -199,7 +205,6 @@ function GameControl(props) {
   ));
 
   const matchCards = selectedPerks.map((card, index) => (
-    // Correct! Key should be specified inside the array.
     <li key={index}>{card}</li>
   ));
 
@@ -207,9 +212,9 @@ function GameControl(props) {
     <div id="GameControl">
       <div id="GameControlHeader">
         <h1>
-          Welcome {props.name} | Current Turn: {props.game.turn}
+          Welcome {props.name} | {single}
         </h1>
-        {single}
+        <p>Round: {props.game.turn}</p>
         <h1>
           Red Flag game code: <strong>{props.game.code}</strong>
         </h1>
@@ -218,33 +223,30 @@ function GameControl(props) {
         <h1>Players in this Game</h1>
         {playerList}
       </div>
+
+      <div>{datesList}</div>
+
       <div>
-        <h1>
-          Dates for {props.game.curSingle} {matchHelperText}&#11015;
-        </h1>
-        {datesList}
-      </div>
-      <div>
-        <h1>
-          Your Perks&#11088; (Select 2 and click the submit match button below)
-        </h1>
+        <h1>Your Perks&#11088; (Select 2 and click the Submit Match)</h1>
         {yourPerks}
       </div>
+      <button className="backButtons" onClick={sendPerksofDate}>
+        Submit match
+      </button>
       <div>
         <h1>
-          Your Red Flags &#128681;
-          <br />
-          (Select 1 and select the date you want to ruin)
+          Your Red Flags &#128681; (Select 1 and select the date you want to
+          ruin)
         </h1>
         {yourRfs}
       </div>
-      <div>
+
+      {/* <div>
         <h1>Your ideal match for {props.game.curSingle}</h1>
         {matchCards}
-        <button className="backButtons" onClick={sendPerksofDate}>
-          Submit match
-        </button>
-      </div>
+        
+      </div> */}
+      <div id="bottomOfPage"></div>
     </div>
   );
 }
