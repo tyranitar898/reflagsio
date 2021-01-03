@@ -32,21 +32,18 @@ class CreateWindow extends React.Component {
       <div>
         <div id="createInput">
           <input
-            id="hostName"
             type="text"
             placeholder="Enter your name"
             onChange={this.handleInputChange}
             name="name"
           />
           <input
-            id="hostName"
             type="text"
             placeholder="Enter # of perks (4 by default)"
             onChange={this.handleInputChange}
             name="optionalPerkNum"
           />
           <input
-            id="hostName"
             type="text"
             placeholder="Enter # of red flags (3 by default)"
             onChange={this.handleInputChange}

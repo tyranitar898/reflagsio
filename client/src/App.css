@@ -163,7 +163,10 @@ label {
   margin-top: 1%;
   margin-bottom: 6%;
 }
-
+#GameLobby {
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
 #GameControlHeader strong,
 #GameLobby strong {
   color: white;
@@ -176,12 +179,11 @@ label {
   width: 90%;
 }
 
-input {
+input[type="text"] {
   margin-top: 1%;
-  background: #eee;
   border: 1;
   height: 78px;
-  background: #fff;
+
   border-bottom: 1px solid #eee;
   font-family: inherit;
   font-size: 28px;
