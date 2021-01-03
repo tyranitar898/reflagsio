@@ -147,9 +147,10 @@ label {
 }
 
 #gameRoomInfo {
+  max-width: 100px;
   position: fixed;
-  top: 40px;
-  left: 85%;
+  top: 80px;
+  left: 90%;
   font-size: 14px;
 }
 
@@ -159,6 +160,8 @@ label {
 
 #GameControlHeader {
   text-align: center;
+  margin-top: 1%;
+  margin-bottom: 6%;
 }
 
 #GameControlHeader strong,
@@ -193,8 +196,9 @@ button.cards-rf {
   font-size: 18px;
   vertical-align: top;
   background: white;
+  min-width: 200px;
   width: 16%;
-  height: 240px;
+  min-height: 280px;
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
@@ -205,8 +209,9 @@ button.cards-dates:hover {
   font-size: 18px;
   vertical-align: top;
   background: yellow;
+  min-width: 200px;
   width: 16%;
-  height: 240px;
+  min-height: 280px;
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
@@ -216,8 +221,9 @@ button.cards-perk:hover {
   font-size: 18px;
   vertical-align: top;
   background: green;
+  min-width: 200px;
   width: 16%;
-  height: 240px;
+  min-height: 280px;
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
@@ -228,8 +234,9 @@ button.cards-perk-clicked {
   vertical-align: top;
   background: green;
 
+  min-width: 200px;
   width: 16%;
-  height: 240px;
+  min-height: 280px;
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
@@ -239,8 +246,9 @@ button.cards-rf:hover {
   font-size: 18px;
   vertical-align: top;
   background: red;
+  min-width: 200px;
   width: 16%;
-  height: 240px;
+  min-height: 280px;
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
@@ -251,8 +259,9 @@ button.cards-rf-clicked {
   vertical-align: top;
   background: red;
 
+  min-width: 200px;
   width: 16%;
-  height: 240px;
+  min-height: 280px;
   border-radius: 5px;
   padding: 5px;
   margin: 1%;
@@ -271,5 +280,5 @@ li#playerInactive {
 }
 
 #bottomOfPage {
-  margin-bottom: 10%;
+  margin-bottom: 2%;
 }

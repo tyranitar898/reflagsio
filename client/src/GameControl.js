@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { render } from "react-dom";
+import { Container, Col, Row } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const NUMPERKSSUBMIT = 2;
 const NUMRFSUBMIT = 1;
@@ -204,43 +205,51 @@ function GameControl(props) {
     />
   ));
 
-  const matchCards = selectedPerks.map((card, index) => (
-    <li key={index}>{card}</li>
-  ));
-
   return (
     <div id="GameControl">
-      <div id="GameControlHeader">
-        <h1>
-          Welcome {props.name} | {single}
-        </h1>
-        <p>Round: {props.game.turn}</p>
-        <h1>
-          Red Flag game code: <strong>{props.game.code}</strong>
-        </h1>
-      </div>
-      <div id="gameRoomInfo">
-        <h1>Players in this Game</h1>
-        {playerList}
-      </div>
-
-      <div>{datesList}</div>
-
-      <div>
-        <h1>Your Perks&#11088; (Select 2 and click the Submit Match)</h1>
-        {yourPerks}
-      </div>
+      <Container fluid>
+        <div id="GameControlHeader">
+          <Row>
+            <Col>
+              <h1>
+                Welcome {props.name} | {single}
+              </h1>
+            </Col>
+          </Row>
+          <h3>Round: {props.game.turn}</h3>
+          <h1>
+            Red Flag game code: <strong>{props.game.code}</strong>
+          </h1>
+        </div>
+        <Row>
+          <Col md={11}>
+            <div>{datesList}</div>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6}>
+            <div>
+              <h1>Your Perks&#11088;</h1>
+              <h5>(Select 2 and click the Submit Match)</h5>
+              {yourPerks}
+            </div>
+          </Col>
+          <Col md={5}>
+            <div>
+              <h1>Your Red Flags &#128681;</h1>
+              <h5>(Select 1 and select the date you want to ruin)</h5>
+              {yourRfs}
+            </div>
+          </Col>
+        </Row>
+      </Container>
       <button className="backButtons" onClick={sendPerksofDate}>
         Submit match
       </button>
-      <div>
-        <h1>
-          Your Red Flags &#128681; (Select 1 and select the date you want to
-          ruin)
-        </h1>
-        {yourRfs}
+      <div id="gameRoomInfo">
+        <h2>Players in this Game</h2>
+        {playerList}
       </div>
-
       {/* <div>
         <h1>Your ideal match for {props.game.curSingle}</h1>
         {matchCards}
