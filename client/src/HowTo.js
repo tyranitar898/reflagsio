@@ -17,28 +17,31 @@ function HowTo(props) {
       </p>
       <h2>Here's how it works</h2>
       <p>
-        One of your friends is going to be the single. <br />
+        One of your friends is going to be the "single". <br />
         Every other player uses TWO perk cards to make a hot date that they
         think would be a great match for that person.
       </p>
 
-      <h2>You'll get characters like:</h2>
+      <h2>You'll get characteristics (perk) cards like:</h2>
       <ul>
         <li>
-          <p>A brain surgeon that loves to cuddle</p>
+          <p>is a brain surgeon</p>
         </li>
         <li>
-          <p>An olympic gymnast that loves video game</p>
+          <p>loves to cuddle</p>
         </li>
         <li>
-          <p>A famous musician that owns your favorite sports team</p>
+          <p>is an olympic gymnast</p>
+        </li>
+        <li>
+          <p>loves video games</p>
+        </li>
+        <li>
+          <p>owns your favorite sports team</p>
         </li>
       </ul>
-
       <h2>
-        But then everyone gets to play a Red Flag onto another player at the
-        table.
-        <br /> Now all of these perfect dates will have flaws like:
+        But then everyone also gets Red Flag cards like:
       </h2>
       <ul>
         <li>
@@ -51,7 +54,18 @@ function HowTo(props) {
           <p>Can only walk horizontally</p>
         </li>
       </ul>
-
+      <h2>Using one of your red flags you can now ruin one of your freinds suggested date. Now all of these perfect dates will have flaws like:</h2>
+      <ul>
+        <li>
+          <p>An olympic gymnast that loves video games who keeps mosquitoes as pets</p>
+        </li>
+        <li>
+          <p>A brain surgeon who loves to cuddle but uses Crayola as make up</p>
+        </li>
+        <li>
+          <p>A millionaire who is humble but Can only walk horizontally</p>
+        </li>
+      </ul>
       <h2>
         Now that all of the dates are horrible, everyone tries to convince the
         single to go out with their date. <br />
