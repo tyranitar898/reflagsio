@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Button, Collapse } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const NUMPERKSSUBMIT = 2;
@@ -11,6 +11,9 @@ function PlayerItem(props) {
   let p = props.player;
   let pts = props.game.points[p.name];
   let c = "playerActive";
+  if (props.game.curSingle == p.name) {
+    c = "playerIsCurSingle";
+  }
   if (!p.active) {
     c = "playerInactive";
   }
@@ -47,6 +50,8 @@ function GameControl(props) {
   const [selectedPerks, setPerks] = useState([]);
   const [selectedRFs, setRFs] = useState([]);
   const [curTurn, setTurn] = useState(0);
+  const [gameInfo, setGameinfo] = useState(true);
+  //hide and unhides game info
 
   var curSocket = props.socket;
   var curName = props.name;
@@ -208,26 +213,37 @@ function GameControl(props) {
   return (
     <div id="GameControl">
       <Container fluid>
-        <div id="GameControlHeader">
-          <Row>
-            <Col>
-              <h1>
-                Welcome {props.name}
-              </h1>
-              <h1>{single}</h1>
-            </Col>
-          </Row>
-          <h3>Round: {props.game.turn}</h3>
-          <h1>
-            Red Flag game code: <strong>{props.game.code}</strong>
-          </h1>
-        </div>
-        <Row>
+        <Row id="gameRow">
+          <Button
+            onClick={() => setGameinfo(!gameInfo)}
+            aria-controls="example-collapse-text"
+            aria-expanded={gameInfo}
+          >
+            {gameInfo ? "Hide GameInfo" : "Show GameInfo"}
+          </Button>
+        </Row>
+
+        <Collapse in={gameInfo}>
+          <div id="GameControlHeader">
+            <Row id="gameRow">
+              <Col md={11}>
+                <h1>Welcome {props.name}</h1>
+                <h1>{single}</h1>
+                <h3>Round: {props.game.turn}</h3>
+                <h1>
+                  Red Flag game code: <strong>{props.game.code}</strong>
+                </h1>
+              </Col>
+            </Row>
+          </div>
+        </Collapse>
+
+        <Row id="datesRow">
           <Col md={11}>
             <div>{datesList}</div>
           </Col>
         </Row>
-        <Row>
+        <Row id="gameRow">
           <Col md={6}>
             <div>
               <h1>Your Perks&#11088;</h1>
@@ -242,15 +258,22 @@ function GameControl(props) {
               {yourRfs}
             </div>
           </Col>
+          <Col md={1}>
+            <div id="gameRoomInfo">
+              <h2>Name : Score </h2>
+              <ul>{playerList}</ul>
+            </div>
+          </Col>
+        </Row>
+        <Row id="gameRow">
+          <Col>
+            <button className="backButtons" onClick={sendPerksofDate}>
+              Submit match
+            </button>
+          </Col>
         </Row>
       </Container>
-      <button className="backButtons" onClick={sendPerksofDate}>
-        Submit match
-      </button>
-      <div id="gameRoomInfo">
-        <h2>Players in this Game</h2>
-        {playerList}
-      </div>
+
       {/* <div>
         <h1>Your ideal match for {props.game.curSingle}</h1>
         {matchCards}
