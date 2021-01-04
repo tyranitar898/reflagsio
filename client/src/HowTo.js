@@ -1,10 +1,12 @@
 import React from "react";
-import howto0 from "./HowToPics/0.png";
-import howto1 from "./HowToPics/1.png";
-import howto2 from "./HowToPics/2.png";
-import howto3 from "./HowToPics/3.png";
-import howto4 from "./HowToPics/4.png";
-import howto5 from "./HowToPics/5.png";
+import { Carousel } from "react-bootstrap";
+import howto0 from "./HowToPics/howto0.png";
+import howto1 from "./HowToPics/howto1.png";
+import howto2 from "./HowToPics/howto2.png";
+import howto3 from "./HowToPics/howto3.png";
+import howto4 from "./HowToPics/howto4.png";
+import howto5 from "./HowToPics/howto5.png";
+
 
 function HowTo(props) {
   return (
@@ -68,13 +70,87 @@ function HowTo(props) {
       </ul>
       <h2>
         Now that all of the dates are horrible, everyone tries to convince the
-        single to go out with their date. <br />
-        That's pretty much it. The game can be as raunchy or tame as your
+        single to go out with their date. <br/>
+        That's pretty much it.<br/> The game can be as raunchy or tame as your
         imaginations allow.
       </h2>
       <div className="divider"></div>
       <h1>Here's what the game actually looks like.</h1>
-      <img src={howto0} alt="" width="80%" height="80%" />
+      <Carousel>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={howto0}
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3 className="carouselh3"></h3>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={howto1}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3 className="carouselh3">Select two preks</h3>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={howto2}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3 className="carouselh3">Then submit those two perks by clicking the submit match button at the bottom of the page.</h3>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={howto3}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3 className="carouselh3">Select a red flag</h3>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={howto4}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3 className="carouselh3">After you see all the ponential matches, tag a red flag onto a date you want to ruin.</h3>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={howto5}
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3 className="carouselh3">Finally when all the dates are ruined the current single will decide on the best date the went to go on.</h3>
+          
+        </Carousel.Caption>
+      </Carousel.Item>
+      
+    </Carousel>
+      {/* <img src={howto0} alt="" width="80%" height="80%" />
       <h2>Once the game starts select two preks.</h2>
       <img src={howto1} alt="" width="80%" height="80%" />
       <h2>
@@ -97,7 +173,7 @@ function HowTo(props) {
         the best date the went to go on.
       </h2>
 
-      <img src={howto5} alt="" width="80%" height="80%" />
+      <img src={howto5} alt="" width="80%" height="80%" /> */}
       
     </div>
   );
