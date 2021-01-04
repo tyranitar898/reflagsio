@@ -285,15 +285,18 @@ div.divider {
   border-bottom: 2px solid black;
 }
 
-li#playerActive {
+p#playerActive {
+  margin-left: 0.4em;
   color: green;
 }
-li#playerInactive {
+p#playerInactive {
+  margin-left: 0.4em;
   color: red;
 }
 
-li#playerIsCurSingle {
-  color: rgb(255, 136, 0);
+p#playerIsCurSingle {
+  margin-left: 0.4em;
+  color: #007bff;
 }
 
 #bottomOfPage {

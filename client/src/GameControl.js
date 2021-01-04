@@ -17,7 +17,7 @@ function PlayerItem(props) {
   if (!p.active) {
     c = "playerInactive";
   }
-  return <li id={c}>{p.name + " : " + pts}</li>;
+  return <p id={c}>{p.name + " : " + pts}</p>;
 }
 /* 
 const sendCardButton = () => {
@@ -260,8 +260,8 @@ function GameControl(props) {
           </Col>
           <Col md={1}>
             <div id="gameRoomInfo">
-              <h2>Name : Score </h2>
-              <ul>{playerList}</ul>
+              <h4>Score </h4>
+              {playerList}
             </div>
           </Col>
         </Row>
