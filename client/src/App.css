@@ -156,10 +156,14 @@ label {
 }
 
 #gameRoomInfo {
-  background-color: #a7f5f5;
+  background-color: #88fafa;
   height: 100%;
   border-radius: 5px;
   font-size: 14px;
+}
+
+#gameRoomInfo p {
+  margin: 0;
 }
 
 #GameControl {
@@ -196,7 +200,7 @@ input[type="text"] {
   border-radius: 10px;
   font-family: inherit;
   font-size: 28px;
-  width: 60%;
+  width: 88%;
   height: 120px;
   text-align: center;
 }
@@ -294,6 +298,10 @@ p#playerInactive {
   color: red;
 }
 
+span.playerIsCurSingleBlue {
+  color: #007bff;
+}
+
 p#playerIsCurSingle {
   margin-left: 0.4em;
   color: #007bff;
@@ -385,5 +393,37 @@ p#playerIsCurSingle {
     border-radius: 5px;
     padding: 5px;
     margin: 1%;
+  }
+
+  button.starterButtons {
+    background-color: rgb(218, 218, 218);
+    font-size: 14px;
+    border-radius: 0.25rem;
+    margin-top: 1%;
+    margin-left: 2%;
+    vertical-align: top;
+    width: 30%;
+    min-height: 60px;
+    margin-bottom: 5%;
+  }
+
+  button.backButtons {
+    background: lightgrey;
+    font-size: 14px;
+    border-radius: 0.25rem;
+    margin-left: 35%;
+    margin-right: 35%;
+    vertical-align: top;
+    width: 30%;
+    min-height: 60px;
+    margin-bottom: 5%;
+  }
+  input[type="text"] {
+    margin-top: 1%;
+    border: 1;
+    height: 78px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
   }
 }

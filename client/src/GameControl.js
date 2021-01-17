@@ -66,13 +66,27 @@ function GameControl(props) {
 
   if (game.curSingle === curName) {
     isCurSingle = true;
-    single =
-      "You are the current single (other players are making dates for you!)";
+
+    single = (
+      <div>
+        <h1>
+          <span className="playerIsCurSingleBlue">You</span>
+          {" are the current single (other players are making dates for you!)"}
+        </h1>
+      </div>
+    );
     matchHelperText = "";
   } else {
-    single =
-      game.curSingle +
-      " is the current single (you and other players are making dates for them)";
+    single = (
+      <div>
+        <h1>
+          <span className="playerIsCurSingleBlue">{game.curSingle}</span>
+          {
+            " is the current single (you and other players are making dates for them)"
+          }{" "}
+        </h1>
+      </div>
+    );
     matchHelperText = "";
   }
   if (game.turn !== curTurn) {
@@ -228,7 +242,7 @@ function GameControl(props) {
             <Row id="gameRow">
               <Col md={11}>
                 <h1>Welcome {props.name}</h1>
-                <h1>{single}</h1>
+                {single}
                 <h3>Round: {props.game.turn}</h3>
                 <h1>
                   Red Flag game code: <strong>{props.game.code}</strong>

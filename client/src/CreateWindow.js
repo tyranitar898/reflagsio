@@ -49,10 +49,10 @@ class CreateWindow extends React.Component {
             onChange={this.handleInputChange}
             name="optionalRfNum"
           />
-          <button className="starterButtons" onClick={this.sendUserInfo}>
-            Create
-          </button>
         </div>
+        <button className="starterButtons" onClick={this.sendUserInfo}>
+          Create
+        </button>
       </div>
     );
   }
