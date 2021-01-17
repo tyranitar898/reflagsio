@@ -133,7 +133,10 @@ class StartControl extends React.Component {
       <div>
         <div id="gameTitleHeader">
           <h1>&nbsp;Red Flags &#128681;</h1>
-          <h3>Red Flags is a party game about convincing your friends to go on terrible dates.</h3>
+          <h3>
+            Red Flags is a party game about convincing your friends to go on
+            terrible dates.
+          </h3>
         </div>
 
         <div id="StartLobby">
@@ -144,8 +147,7 @@ class StartControl extends React.Component {
         </div>
         <div id="builtByDiv">
           <h2 id="builtByHeader">
-            Built by{" "}
-            <a href="https://tyranitar898.github.io/UofT/">RZSWAG</a>
+            Built by <a href="https://tyranitar898.github.io/UofT/">___</a>
           </h2>
           <h2 id="checkOutThis">
             Also checkout this game my friend Brandon made&nbsp;

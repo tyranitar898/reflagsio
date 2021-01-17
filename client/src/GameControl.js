@@ -268,7 +268,7 @@ function GameControl(props) {
         <Row id="gameRow">
           <Col>
             <button className="backButtons" onClick={sendPerksofDate}>
-              Submit match
+              Submit Match
             </button>
           </Col>
         </Row>
