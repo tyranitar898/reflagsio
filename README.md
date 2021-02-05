@@ -11,32 +11,6 @@ Redflagsio is a modified web app version of the popular board game [Red flags](h
     <img src="client/src/HowToPics/howto5.png" alt="" width="45%"/>
 </div>
 
-### Getting Started
-
-These instructions will get you a copy of the proejct up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-Clone proj
-
-```
-git clone https://github.com/tyranitar898/redflagsio.git
-```
-
-cd into project directory and install dependencies
-
-```
-cd redflagsio
-npm install
-```
-
-Run locally (runs test script)
-
-```
-npm run test
-```
-
-Now you can visit it at http://localhost:3000/
 
 ## Built With
 
